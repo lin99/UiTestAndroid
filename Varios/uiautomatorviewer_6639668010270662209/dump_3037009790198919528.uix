@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?><hierarchy rotation="1">
+<node index="0" text="" class="android.widget.FrameLayout" package="com.android.browser" content-desc="" checkable="false" 
+checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false"
+ password="false" selected="false" bounds="[0,0][480,764]">
+ <node index="0" text="" class="android.widget.LinearLayout" 
+ package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false"
+ focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][480,764]">
+ <node index="0" text="" class="android.widget.FrameLayout" package="com.android.browser" content-desc="" checkable="false" 
+ checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false"
+ password="false" selected="false" bounds="[0,0][480,42]">
+ <node index="0" text="" class="android.view.View" 
+ package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+ focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false"
+ bounds="[0,0][480,42]">
+ <node index="0" text="" class="android.widget.LinearLayout" package="com.android.browser"
+ content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false"
+ scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,0][187,42]">
+ <node index="0" text="" class="android.widget.HorizontalScrollView" package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,9][144,42]">
+ <node index="0" text="" class="android.widget.LinearLayout" package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,9][144,42]">
+ <node index="0" text="" class="android.widget.LinearLayout" package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="true" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[9,9][144,42]">
+ <node index="0" text="vAndroidNews - Android smarphone, tablet news and reviews | Android smarphone, tablets news and games reviews" 
+ class="android.widget.TextView" package="com.android.browser" content-desc="" checkable="false" checked="false" 
+ clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" 
+ password="false" selected="false" bounds="[15,9][109,42]"/>
+ <node index="1" text="" class="android.widget.ImageButton"
+ package="com.android.browser" content-desc="Cerrar pestaña" checkable="false" checked="false" clickable="true" enabled="true"
+ focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[109,13][133,37]" /></node>
+ </node>
+ </node>
+ <node NAF="true" index="1" text="" class="android.widget.ImageButton" package="com.android.browser" 
+ content-desc="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false"
+ scrollable="false" long-clickable="false" password="false" selected="false" bounds="[134,9][177,42]" /></node>
+ <node index="2" text="" class="android.widget.LinearLayout" package="com.android.browser" content-desc="" checkable="false"
+ checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false"
+ password="false" selected="false" bounds="[432,0][480,42]">
+ <node index="0" text="" class="android.widget.ImageButton" 
+ package="com.android.browser" content-desc="Más opciones" checkable="false" checked="false" clickable="true" enabled="true"
+ focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false"
+ bounds="[432,0][480,42]" /></node></node></node>
+ <node index="1" text="" class="android.widget.FrameLayout" 
+ package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="false" enabled="true"
+ focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" 
+ bounds="[0,42][480,764]">
+ <node index="0" text="" class="android.widget.LinearLayout" package="com.android.browser"
+ content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" 
+ scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,42][480,764]">
+ <node index="1" text="" class="android.widget.FrameLayout" package="com.android.browser" content-desc="" checkable="false" 
+ checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" 
+ password="false" selected="false" bounds="[0,42][480,86]">
+ <node index="0" text="" class="android.widget.RelativeLayout" package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,42][480,86]">
+ <node index="0" text="" class="android.widget.RelativeLayout" package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,42][480,86]">
+ <node index="0" text="" class="android.widget.LinearLayout" package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,42][480,78]">
+ <node index="0" text="" class="android.widget.LinearLayout" package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,42][108,78]">
+ <node index="0" text="" class="android.widget.ImageButton" package="com.android.browser" content-desc="Volver" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,42][36,78]" />
+ <node index="1" text="" class="android.widget.ImageButton" package="com.android.browser" content-desc="Avanzar" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[36,42][72,78]" />
+ <node index="2" text="" class="android.widget.ImageButton" package="com.android.browser" content-desc="Detener carga de la página" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[72,42][108,78]" /></node>
+ <node index="1" text="" class="android.widget.LinearLayout" package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[108,42][408,78]">
+ <node index="0" text="" class="android.widget.ImageView" package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[109,52][133,67]" />
+ <node index="1" text="http://www.vandroidnews.com/" class="android.widget.EditText" package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="true" password="false" selected="false" bounds="[133,42][370,78]" />
+ <node index="2" text="" class="android.widget.ImageButton" package="com.android.browser" content-desc="Marcar página" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[370,42][406,78]" /></node>
+ <node index="2" text="" class="android.widget.ImageButton" package="com.android.browser" content-desc="Buscar" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[408,42][444,78]" />
+ <node index="3" text="" class="android.widget.ImageButton" package="com.android.browser" content-desc="Marcadores" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[444,42][480,78]" /></node>
+ <node index="1" text="" class="android.widget.ImageView" package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,71][480,86]" /></node></node></node>
+ <node index="2" text="" class="android.widget.FrameLayout" package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,78][480,764]">
+ <node index="0" text="" class="android.widget.LinearLayout" package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,78][480,764]">
+ <node index="0" text="" class="android.widget.FrameLayout" package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="false" enabled="true" focusable="false" focused="false" scrollable="false" long-clickable="false" password="false" selected="false" bounds="[0,78][480,764]">
+ <node NAF="true" index="0" text="" class="android.webkit.WebView" package="com.android.browser" content-desc="" checkable="false" checked="false" clickable="true" enabled="true" focusable="true" focused="true" scrollable="true" long-clickable="true" password="false" selected="false" bounds="[0,78][480,764]" />
+ </node></node></node></node></node></node></node></hierarchy>
