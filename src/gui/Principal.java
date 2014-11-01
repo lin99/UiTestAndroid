@@ -16,12 +16,20 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+
+import compilador.Comandos;
+import control.Controlador;
 
 public class Principal {
 
 	protected Shell shlUitestandroid;
 	private Text text1;
 	private Table table;
+	private static Controlador controlador;
 
 	/**
 	 * Launch the application.
@@ -30,6 +38,7 @@ public class Principal {
 	public static void main(String[] args) {
 		try {
 			Principal window = new Principal();
+			controlador = new Controlador("Tig\\comandos.pan");
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -63,6 +72,13 @@ public class Principal {
 		grpGrupo.setText("Agregar Acciones");
 		grpGrupo.setBounds(312, 189, 449, 241);
 		
+		Group grpAcciones = new Group(shlUitestandroid, SWT.NONE);
+		grpAcciones.setText("Acciones");
+		grpAcciones.setBounds(10, 189, 288, 241);
+		
+		final StyledText accionesTexto = new StyledText(grpAcciones, SWT.BORDER);
+		accionesTexto.setBounds(0, 24, 288, 217);
+		
 		ScrolledComposite scrolledComposite = new ScrolledComposite(grpGrupo, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		scrolledComposite.setBounds(10, 27, 429, 204);
 		scrolledComposite.setExpandHorizontal(true);
@@ -77,6 +93,18 @@ public class Principal {
 		tbtmNewItem.setControl(composite_1);
 		
 		Button btnGirarIzquierda = new Button(composite_1, SWT.NONE);
+		btnGirarIzquierda.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+			}
+		});
+		btnGirarIzquierda.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				accionesTexto.append(Comandos.ROTATE + " " +Comandos.IZQUIERDA + "\n");
+			}
+		});
 		btnGirarIzquierda.setBounds(75, 43, 100, 25);
 		btnGirarIzquierda.setText("Girar Izquierda");
 		
@@ -167,12 +195,32 @@ public class Principal {
 		MenuItem mntmEdicion = new MenuItem(menu, SWT.NONE);
 		mntmEdicion.setText("Edicion");
 		
-		Group grpAcciones = new Group(shlUitestandroid, SWT.NONE);
-		grpAcciones.setText("Acciones");
-		grpAcciones.setBounds(10, 189, 288, 241);
+		Button btnCompilar = new Button(shlUitestandroid, SWT.NONE);
+		btnCompilar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				
+			}
+		});
+		btnCompilar.setBounds(455, 158, 75, 25);
+		btnCompilar.setText("Compilar");
 		
-		StyledText styledText = new StyledText(grpAcciones, SWT.BORDER);
-		styledText.setBounds(0, 24, 288, 217);
+		Button btnGuardar = new Button(shlUitestandroid, SWT.NONE);
+		btnGuardar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				boolean esExistoso = controlador.guardar(accionesTexto.getText());
+				if(esExistoso){
+					System.out.println("Todo bien");
+				}else{
+					System.out.println("Pu;alada");
+				}
+			}
+		});
+		btnGuardar.setBounds(374, 158, 75, 25);
+		btnGuardar.setText("Guardar");
+		
+		
 
 	}
 }

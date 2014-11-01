@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
+import control.EscritorArchivos;
+
 public class CreadorWindows extends Creador{
 	
 	static final String TOOL = "tools/android";
@@ -85,26 +87,8 @@ public class CreadorWindows extends Creador{
 		
 		String nombre = seleccionar(n);
 		
-		FileWriter fichero = null;
-		try {
-			
-		fichero = new FileWriter(nombre);
-			PrintWriter pw = new PrintWriter(fichero);
-			pw.println(sb);
-			
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		} finally {
-	           try {
-	               // Nuevamente aprovechamos el finally para 
-	               // asegurarnos que se cierra el fichero.
-	               if (null != fichero)
-	                  fichero.close();
-	               } catch (Exception e2) {
-	                  e2.printStackTrace();
-	               }
-		}
+		EscritorArchivos escritorArchivos = new EscritorArchivos();
+		escritorArchivos.crearArchivo(nombre, sb);
 					
 	}
 	
