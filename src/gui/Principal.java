@@ -13,6 +13,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
+import org.eclipse.swt.custom.StyledText;
 
 public class Principal {
 
@@ -53,15 +56,15 @@ public class Principal {
 	 */
 	protected void createContents() {
 		shlUitestandroid = new Shell();
-		shlUitestandroid.setSize(646, 388);
+		shlUitestandroid.setSize(798, 499);
 		shlUitestandroid.setText("UiTestAndroid");
 		
 		Group grpGrupo = new Group(shlUitestandroid, SWT.NONE);
 		grpGrupo.setText("Agregar Acciones");
-		grpGrupo.setBounds(10, 10, 390, 241);
+		grpGrupo.setBounds(312, 189, 449, 241);
 		
 		ScrolledComposite scrolledComposite = new ScrolledComposite(grpGrupo, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
-		scrolledComposite.setBounds(10, 27, 370, 204);
+		scrolledComposite.setBounds(10, 27, 429, 204);
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
 		
@@ -123,15 +126,27 @@ public class Principal {
 		Button btnCrearAccion = new Button(composite_2, SWT.NONE);
 		btnCrearAccion.setBounds(23, 63, 75, 25);
 		btnCrearAccion.setText("Crear Accion");
+		
+		TabItem tabAssert = new TabItem(tabFolder, SWT.NONE);
+		tabAssert.setText("Assert");
+		
+		Composite composite_3 = new Composite(tabFolder, SWT.NONE);
+		tabAssert.setControl(composite_3);
+		
+		TabItem tabEspera = new TabItem(tabFolder, SWT.NONE);
+		tabEspera.setText("Tiempo de Espera");
+		
+		Composite composite_4 = new Composite(tabFolder, SWT.NONE);
+		tabEspera.setControl(composite_4);
 		scrolledComposite.setContent(tabFolder);
 		scrolledComposite.setMinSize(tabFolder.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		
 		Group grpPropiedades = new Group(shlUitestandroid, SWT.NONE);
 		grpPropiedades.setText("Propiedades");
-		grpPropiedades.setBounds(417, 10, 203, 241);
+		grpPropiedades.setBounds(558, 10, 203, 169);
 		
 		table = new Table(grpPropiedades, SWT.BORDER | SWT.FULL_SELECTION);
-		table.setBounds(10, 25, 183, 206);
+		table.setBounds(10, 25, 183, 134);
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
 		
@@ -142,7 +157,22 @@ public class Principal {
 		TableColumn tblclmnValor = new TableColumn(table, SWT.NONE);
 		tblclmnValor.setWidth(100);
 		tblclmnValor.setText("Valor");
+		
+		Menu menu = new Menu(shlUitestandroid, SWT.BAR);
+		shlUitestandroid.setMenuBar(menu);
+		
+		MenuItem mntmArchivo = new MenuItem(menu, SWT.NONE);
+		mntmArchivo.setText("Archivo");
+		
+		MenuItem mntmEdicion = new MenuItem(menu, SWT.NONE);
+		mntmEdicion.setText("Edicion");
+		
+		Group grpAcciones = new Group(shlUitestandroid, SWT.NONE);
+		grpAcciones.setText("Acciones");
+		grpAcciones.setBounds(10, 189, 288, 241);
+		
+		StyledText styledText = new StyledText(grpAcciones, SWT.BORDER);
+		styledText.setBounds(0, 24, 288, 217);
 
 	}
-
 }
