@@ -109,18 +109,53 @@ public class Principal {
 		btnGirarIzquierda.setText("Girar Izquierda");
 		
 		Button btnGirarDerecha = new Button(composite_1, SWT.NONE);
+		btnGirarDerecha.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				accionesTexto.append(Comandos.ROTATE + " "+ Comandos.DERECHA+ "\n");
+			}
+		});
+		btnGirarDerecha.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+			}
+		});
 		btnGirarDerecha.setBounds(205, 43, 100, 25);
 		btnGirarDerecha.setText("Girar Derecha");
 		
 		Button btnBack = new Button(composite_1, SWT.NONE);
+		btnBack.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				accionesTexto.append(Comandos.ATRAS + "\n");
+			}
+		});
 		btnBack.setBounds(24, 89, 90, 25);
 		btnBack.setText("Back");
 		
 		Button btnHome = new Button(composite_1, SWT.NONE);
+		btnHome.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				accionesTexto.append(Comandos.HOME + "\n");
+			}
+		});
+		btnHome.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+			}
+		});
 		btnHome.setBounds(138, 89, 90, 25);
 		btnHome.setText("Home");
 		
 		Button btnRecentApps = new Button(composite_1, SWT.NONE);
+		btnRecentApps.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				accionesTexto.append(Comandos.APPS_RECIENTES + "\n");
+			}
+		});
 		btnRecentApps.setBounds(251, 89, 90, 25);
 		btnRecentApps.setText("Recent Apps");
 		
@@ -152,6 +187,12 @@ public class Principal {
 		text1.setBounds(112, 22, 220, 21);
 		
 		Button btnCrearAccion = new Button(composite_2, SWT.NONE);
+		btnCrearAccion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+			accionesTexto.append(Comandos.INGRESAR_TEXTO + " "+ text1.getText());
+			}
+		});
 		btnCrearAccion.setBounds(23, 63, 75, 25);
 		btnCrearAccion.setText("Crear Accion");
 		
