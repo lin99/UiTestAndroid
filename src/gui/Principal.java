@@ -190,7 +190,7 @@ public class Principal {
 		btnCrearAccion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-			accionesTexto.append(Comandos.INGRESAR_TEXTO + " "+ text1.getText());
+			accionesTexto.append(Comandos.INGRESAR_TEXTO + " "+ text1.getText() + "\n");
 			}
 		});
 		btnCrearAccion.setBounds(23, 63, 75, 25);

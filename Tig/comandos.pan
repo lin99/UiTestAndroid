@@ -1,5 +1,7 @@
+Ingresar Texto: aaa
+Ingresar Texto: aaa
+Ingresar Texto: aaa
 girar izquierda
-home
-girar derecha
+girar izquierda
 atras
 

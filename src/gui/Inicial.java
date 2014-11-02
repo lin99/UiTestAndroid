@@ -7,6 +7,8 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 
 public class Inicial {
 
@@ -114,6 +116,12 @@ public class Inicial {
 		text.setBounds(238, 273, 36, 21);
 		
 		btnGuardar = new Button(grpInformacion, SWT.NONE);
+		btnGuardar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				
+			}
+		});
 		btnGuardar.setBounds(364, 273, 75, 25);
 		btnGuardar.setText("Guardar");
 
