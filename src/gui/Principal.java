@@ -22,6 +22,7 @@ import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
 import compilador.Comandos;
+import compilador.Compilador;
 import control.Controlador;
 
 public class Principal {
@@ -38,7 +39,7 @@ public class Principal {
 	public static void main(String[] args) {
 		try {
 			Principal window = new Principal();
-			controlador = new Controlador("Tig\\comandos.pan");
+			controlador = new Controlador("Tig\\src\\comandos.pan");
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -240,7 +241,14 @@ public class Principal {
 		btnCompilar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				
+				Compilador compilador = new Compilador();
+				try {
+					compilador.crearTest("Tig\\comandos.pan");
+					System.out.println("Funciono");
+				} catch (Exception e1) {
+					System.out.println(":( no funciono");
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnCompilar.setBounds(455, 158, 75, 25);

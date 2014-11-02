@@ -1,7 +1,8 @@
-Ingresar Texto: aaa
-Ingresar Texto: aaa
-Ingresar Texto: aaa
-girar izquierda
-girar izquierda
+atras
+home
+atras
+aplicaciones_recientes
+home
+aplicaciones_recientes
 atras
 
