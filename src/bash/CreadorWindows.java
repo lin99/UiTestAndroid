@@ -49,11 +49,13 @@ public class CreadorWindows extends Creador{
 	@Override
 	public void batAntBuild() {
 	
-		String instruccion  = "ant " + pathProyecto + "build";
+		String instruccion  = "ant " +  "build";
 		
 		
 		StringBuilder sb = new StringBuilder();
-
+		
+		sb.append("cd " + pathProyecto);
+		sb.append("\n");
 		sb.append(instruccion);
 		
 		crearArchivo(CREAR_ANT, sb);
@@ -114,7 +116,7 @@ public class CreadorWindows extends Creador{
 		if (n == CREAR_BUILD){
 			nombre += "crearBuild.bat";
 		}else if(n == CREAR_ANT){
-			nombre += "ant.bat";
+			nombre += "anta.bat";
 		}else if(n == CREAR_PUSH_RUN) {
 			nombre += "pushRun.bat";
 		}else{

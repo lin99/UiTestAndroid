@@ -7,9 +7,9 @@ public abstract class Creador {
 	String nombrePaquete;
 	String numeroAPI;
 	String nombreProyecto;
-	static final int CREAR_BUILD = 1;
-	static final int CREAR_ANT = 2;
-	static final int CREAR_PUSH_RUN = 0;
+	public static final int CREAR_BUILD = 1;
+	public static final int CREAR_ANT = 2;
+	public static final int CREAR_PUSH_RUN = 0;
 	
 	public abstract void batCrearBuild();
 		

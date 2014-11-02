@@ -20,17 +20,22 @@ public class ValidadorTexto {
 		this.TIPO = tipo;
 	}
 	
+	public ValidadorTexto() {
+		
+	}
+
 	public boolean esValido(){
 		if(this.TIPO == PATH_ANDROID){
 			return ValidadorTexto.valPathAndroid(CADENA);
 		}else if(TIPO == PATH_PROYECTO){
 			return ValidadorTexto.valPathProyecto(CADENA);
-		}else if(TIPO == NOMBRE_CLASE || TIPO == NOMBRE_PAQUETE || TIPO == NOMBRE_PAQUETE){
-			return ValidadorTexto.valNomClasePaquetePaquete(CADENA);
+		}else if(TIPO == NOMBRE_CLASE || TIPO == NOMBRE_PAQUETE || TIPO == NOMBRE_PROYECTO){
+			return ValidadorTexto.valNomClasePaqueteProyecto(CADENA);
 		}else if(TIPO == NUMERO_API){
 			return ValidadorTexto.valNumAPI(CADENA);
 		}else{
-			System.out.println("Numero no valido");
+			System.out.println("Numero no valido" + TIPO);
+			
 			return false;
 		}
 		
@@ -42,9 +47,9 @@ public class ValidadorTexto {
 		
 	}
 
-	private static boolean valNomClasePaquetePaquete(String cadena) {
+	private static boolean valNomClasePaqueteProyecto(String cadena) {
 		
-		return Pattern.matches("[a-z]||[A-Z]", cadena);
+		return Pattern.matches("[[a-z]*[A-Z]*]*", cadena);
 	}
 
 	private static boolean valPathProyecto(String cadena) {
@@ -74,7 +79,7 @@ public class ValidadorTexto {
 	}
 	
 	public static void main(String[] args){
-		ValidadorTexto validador = new ValidadorTexto("3333",NOMBRE_PROYECTO);
+		ValidadorTexto validador = new ValidadorTexto("",NOMBRE_CLASE);
 		System.out.println(validador.esValido());
 	}
 
