@@ -21,6 +21,8 @@ import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
+import bash.Creador;
+
 import compilador.Comandos;
 import compilador.Compilador;
 import control.Controlador;
@@ -39,7 +41,7 @@ public class Principal {
 	public static void main(String[] args) {
 		try {
 			Principal window = new Principal();
-			controlador = new Controlador("Tig\\src\\comandos.pan");
+			controlador = new Controlador("Tig\\comandos.pan");
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -251,7 +253,7 @@ public class Principal {
 				}
 			}
 		});
-		btnCompilar.setBounds(455, 158, 75, 25);
+		btnCompilar.setBounds(466, 126, 75, 25);
 		btnCompilar.setText("Compilar");
 		
 		Button btnGuardar = new Button(shlUitestandroid, SWT.NONE);
@@ -266,8 +268,20 @@ public class Principal {
 				}
 			}
 		});
-		btnGuardar.setBounds(374, 158, 75, 25);
+		btnGuardar.setBounds(466, 95, 75, 25);
 		btnGuardar.setText("Guardar");
+		
+		Button btnEjecutar = new Button(shlUitestandroid, SWT.NONE);
+		btnEjecutar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				
+				
+				
+			}
+		});
+		btnEjecutar.setBounds(466, 157, 75, 25);
+		btnEjecutar.setText("Ejecutar");
 		
 		
 

@@ -1,17 +1,32 @@
 package compilador;
 
+import gui.Inicial;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
+import control.CreadorCarpetas;
+import control.CreadorCarpetasWindows;
+
 public class Compilador {
+	
+	CreadorCarpetasWindows creadorCarpetas;
+	
 	
 	//Cambiar path del archivo de escritura
 	public void crearTest( String nameFile ) throws Exception{
+		
+		//PATH QUEMADO!!!
+		
+		creadorCarpetas = new CreadorCarpetasWindows("D:\\Directorio\\Tig\\src\\");
+		creadorCarpetas.crearCarpetas();
+		
+		String path = creadorCarpetas.getPath();
 		BufferedReader br = new BufferedReader( new FileReader( nameFile ) );
-		PrintWriter pw = new PrintWriter("TestUi.java");
+		PrintWriter pw = new PrintWriter(path + "TestUi.java");
 		StringBuilder sb = new StringBuilder();
 		//Agregando Imports
 		sb.append("import com.android.uiautomator.core.*;\n" +

@@ -22,22 +22,33 @@ public class CreadorWindows extends Creador{
 	static final String SHELL= "shell uiautomator runtest"; 
 	static final String C = "-c";
 	
+
 	
-	
- 	public CreadorWindows(String pathAndroid, String pathProyecto, String nombreClase, String nombrePaquete, String numeroAPI, String nombreProyecto){
+ 	
+
+	public CreadorWindows(String pathAndroid, String pathProyecto, String nombreClase, String nombrePaquete, String numeroAPI, String nombreProyecto){
 		this.pathAndroid = pathAndroid;
 		this.pathProyecto = pathProyecto;
 		this.nombreClase = nombreClase;
 		this.nombrePaquete = nombrePaquete;
 		this.numeroAPI = numeroAPI;
 		this.nombreProyecto = nombreProyecto;
+		
+	}
+ 	
+ 	public CreadorWindows(String pathAndroid, String pathWorkspace, String nombreClase, String numeroAPI, String nombreProyecto){
+		this.pathAndroid = pathAndroid;
+		this.nombreClase = nombreClase;
+		this.numeroAPI = numeroAPI;
+		this.nombreProyecto = nombreProyecto;
+		this.pathWorkspace = pathWorkspace;
 	}
 	
 	
 	@Override
 	public void batCrearBuild() {
 		String instruccion = pathAndroid + TOOL + " " + CREATE + " "+nombreProyecto+ " " + T + " "+numeroAPI+ 
-							" "+ P + " " + pathProyecto;
+							" "+ P + " " + pathWorkspace+nombreProyecto;
 		System.out.println(instruccion);
 		
 		StringBuilder sb = new StringBuilder();
@@ -54,7 +65,7 @@ public class CreadorWindows extends Creador{
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("cd " + pathProyecto);
+		sb.append("cd " + pathWorkspace+nombreProyecto);
 		sb.append("\n");
 		sb.append(instruccion);
 		
@@ -65,10 +76,10 @@ public class CreadorWindows extends Creador{
 	//adb shell uiautomator runtest MyAppsTest.jar -c paquete.LaunchSettings
 	@Override
 	public void batPushRun() {
-		String instruccion = ADB +" " + PUSH +" "+ pathProyecto + BIN + nombreProyecto+ JAR 
+		String instruccion = ADB +" " + PUSH +" "+ pathWorkspace+nombreProyecto +"\\"+ BIN + nombreProyecto+ JAR 
 							+" " + DESTINO;
 		String instruccion2 = ADB +" " + SHELL +" "+ nombreProyecto+ JAR +" " + C +" " 
-							+ nombrePaquete+ "." +nombreClase;
+							+nombreClase;
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append(instruccion);
@@ -105,18 +116,18 @@ public class CreadorWindows extends Creador{
             }
                 lector.close();
             }catch (Exception err) {
-                err.printStackTrace();
             }
+		System.out.println(n);
 		
 	}
 
 
 	private static String seleccionar(int n) {
-		String nombre = "Bash/";
+		String nombre = pathWorkspace + "Bash/";
 		if (n == CREAR_BUILD){
 			nombre += "crearBuild.bat";
 		}else if(n == CREAR_ANT){
-			nombre += "anta.bat";
+			nombre += "anto.bat";
 		}else if(n == CREAR_PUSH_RUN) {
 			nombre += "pushRun.bat";
 		}else{
@@ -127,6 +138,12 @@ public class CreadorWindows extends Creador{
 		return nombre;
 	}
 	
-	
+	public String getPathWorkspace() {
+		return pathWorkspace;
+	}
+
+	public void setPathWorkspace(String pathWorkspace) {
+		this.pathWorkspace = pathWorkspace;
+	}	
 	
 }
