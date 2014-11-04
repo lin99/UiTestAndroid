@@ -32,7 +32,7 @@ public class CreadorCarpetasWindows extends CreadorCarpetas{
 		
 		File file = new File(path);
 		file.mkdirs();
-		return false;
+		return file.exists();
 	}
 
 

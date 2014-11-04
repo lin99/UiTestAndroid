@@ -129,17 +129,31 @@ public class Inicial {
 				validador = new ValidadorTexto(textNumeroAPI.getText().toString(),validador.NUMERO_API);
 				boolean v5 = validador.esValido();
 				System.out.println(textNumeroAPI.getText().toString()+" "+validador.PATH_ANDROID);
-				
+				boolean creado = true;
 			
 				System.out.println(v1 + " " +v2 +  " " +v5);
 				if(v1 && v2 && v5 ){
 					pathSDK = textPathProyecto.getText()+"Bash\\";
 					creadorCarpetas = new CreadorCarpetasWindows(pathSDK);
-					creadorCarpetas.crearCarpetas();
+					boolean aux = creadorCarpetas.crearCarpetas();
+					System.out.println("PATH: "+aux);
+					if( !aux ){
+						pathSDK = null;
+						System.out.println("Error al crear Path");
+						creado = false;
+					}
 					
 					workspace = textPathProyecto.getText()+"Tig\\";
 					creadorCarpetas = new CreadorCarpetasWindows(workspace+"src\\");
-					creadorCarpetas.crearCarpetas();
+
+					aux = creadorCarpetas.crearCarpetas();
+					System.out.println("workspace: "+aux);
+					if( !aux ){
+						workspace = null;
+						System.out.println("Error al crear Carpetas en Workspace");
+						creado = false;
+					}
+					
 					
 					creador = new CreadorWindows(textPathAndroid.getText(), textPathProyecto.getText(), 
 							"TestUi", textNumeroAPI.getText(),
@@ -153,7 +167,8 @@ public class Inicial {
 					//creador.ejecutar(CreadorWindows.CREAR_BUILD);
 					//creador.ejecutar(CreadorWindows.CREAR_ANT);
 					//creador.ejecutar(CreadorWindows.CREAR_PUSH_RUN);
-					shell.close();
+					if( creado )
+						shell.close();
 				}
 				
 				else {
