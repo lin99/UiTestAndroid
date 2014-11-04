@@ -28,7 +28,8 @@ public class Inicial {
 	private static CreadorWindows creador;
 	private static CreadorCarpetasWindows creadorCarpetas;
 
-	private String pathSDK, workspace;
+	private String pathSDK, workspace, api;
+
 	private Principal principal;
 	
 	
@@ -133,13 +134,17 @@ public class Inicial {
 			
 				System.out.println(v1 + " " +v2 +  " " +v5);
 				if(v1 && v2 && v5 ){
+					
 					pathSDK = textPathProyecto.getText()+"Bash\\";
+					api = textNumeroAPI.getText();
 					creadorCarpetas = new CreadorCarpetasWindows(pathSDK);
 					creadorCarpetas.crearCarpetas();
 					
 					workspace = textPathProyecto.getText()+"Tig\\";
 					creadorCarpetas = new CreadorCarpetasWindows(workspace+"src\\");
 					creadorCarpetas.crearCarpetas();
+					
+					workspace = textPathProyecto.getText();
 					
 					creador = new CreadorWindows(textPathAndroid.getText(), textPathProyecto.getText(), 
 							"TestUi", textNumeroAPI.getText(),
@@ -150,9 +155,7 @@ public class Inicial {
 					
 					principal.setPath( pathSDK );
 					principal.setWorkspace( workspace );
-					//creador.ejecutar(CreadorWindows.CREAR_BUILD);
-					//creador.ejecutar(CreadorWindows.CREAR_ANT);
-					//creador.ejecutar(CreadorWindows.CREAR_PUSH_RUN);
+					principal.setApi(api);
 					shell.close();
 				}
 				

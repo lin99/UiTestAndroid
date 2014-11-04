@@ -17,9 +17,9 @@ public class Main {
 		creadorWindows.batCrearBuild();
 		creadorWindows.batAntBuild();
 		creadorWindows.batPushRun();
-		//creadorWindows.ejecutar(CreadorWindows.CREAR_BUILD);
-		//creadorWindows.ejecutar(CreadorWindows.CREAR_ANT);
-		//creadorWindows.ejecutar(CreadorWindows.CREAR_PUSH_RUN);
+		creadorWindows.ejecutar(CreadorWindows.CREAR_BUILD);
+		creadorWindows.ejecutar(CreadorWindows.CREAR_ANT);
+		creadorWindows.ejecutar(CreadorWindows.CREAR_PUSH_RUN);
 	}
 
 }

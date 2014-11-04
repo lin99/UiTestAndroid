@@ -20,6 +20,9 @@ import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
+import bash.Creador;
+import bash.CreadorWindows;
 import compilador.Comandos;
 import compilador.Compilador;
 import control.Controlador;
@@ -30,9 +33,19 @@ public class Principal {
 	private Text text1;
 	private Table table;
 	private static Controlador controlador;
+	private CreadorWindows creador;
 
 	
-	private String pathSDK, workspace;
+	private String pathSDK, workspace,api;
+	
+	public String getApi() {
+		return api;
+	}
+
+	public void setApi(String api) {
+		this.api = api;
+	}
+
 	/**
 	 * Launch the application.
 	 * @param args
@@ -282,7 +295,11 @@ public class Principal {
 		btnEjecutar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				
+				creador = new CreadorWindows(pathSDK, workspace, "TestUi", api, "Tig");
+				System.out.println(creador.getPathWorkspace());
+				creador.ejecutar(CreadorWindows.CREAR_BUILD);
+				creador.ejecutar(CreadorWindows.CREAR_ANT);
+				creador.ejecutar(CreadorWindows.CREAR_PUSH_RUN);
 			}
 		});
 		btnEjecutar.setBounds(466, 157, 75, 25);
