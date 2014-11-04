@@ -44,8 +44,8 @@ public class CreadorWindows extends Creador{
 	
 	@Override
 	public void batCrearBuild() {
-		String instruccion = pathAndroid + TOOL + " " + CREATE + " "+nombreProyecto+ " " + T + " "+numeroAPI+ 
-							" "+ P + " " + pathWorkspace+nombreProyecto;
+		String instruccion = "\""+pathAndroid+"\"" + TOOL + " " + CREATE + " "+nombreProyecto+ " " + T + " "+numeroAPI+ 
+							" "+ P + " " + "\""+pathWorkspace+nombreProyecto+"\"";
 		System.out.println(instruccion);
 		
 		StringBuilder sb = new StringBuilder();
