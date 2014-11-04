@@ -9,10 +9,7 @@ import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-
 import bash.CreadorWindows;
-
-import control.CreadorCarpetas;
 import control.CreadorCarpetasWindows;
 import control.ValidadorTexto;
 
@@ -30,22 +27,25 @@ public class Inicial {
 
 	private static CreadorWindows creador;
 	private static CreadorCarpetasWindows creadorCarpetas;
+
+	private String pathSDK, workspace;
+	private Principal principal;
 	
-	public static CreadorWindows getCreador() {
-		return creador;
+	
+	public Inicial( Principal principal ){
+		super();
+		pathSDK = "No asignado";
+		workspace = "No asignado";
+		this.principal = principal;
 	}
-
-	public static void setCreador(CreadorWindows creador) {
-		Inicial.creador = creador;
-	}
-
+	
 	/**
 	 * Launch the application.
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		try {
-			Inicial window = new Inicial();
+			Inicial window = new Inicial( new Principal() );
 			window.open();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -60,6 +60,7 @@ public class Inicial {
 		createContents();
 		shell.open();
 		shell.layout();
+		
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
@@ -132,10 +133,12 @@ public class Inicial {
 			
 				System.out.println(v1 + " " +v2 +  " " +v5);
 				if(v1 && v2 && v5 ){
-					creadorCarpetas = new CreadorCarpetasWindows(textPathProyecto.getText()+"Bash\\");
+					pathSDK = textPathProyecto.getText()+"Bash\\";
+					creadorCarpetas = new CreadorCarpetasWindows(pathSDK);
 					creadorCarpetas.crearCarpetas();
 					
-					creadorCarpetas = new CreadorCarpetasWindows(textPathProyecto.getText()+"Tig\\src\\");
+					workspace = textPathProyecto.getText()+"Tig\\";
+					creadorCarpetas = new CreadorCarpetasWindows(workspace+"src\\");
 					creadorCarpetas.crearCarpetas();
 					
 					creador = new CreadorWindows(textPathAndroid.getText(), textPathProyecto.getText(), 
@@ -145,9 +148,12 @@ public class Inicial {
 					creador.batAntBuild();
 					creador.batPushRun();
 					
+					principal.setPath( pathSDK );
+					principal.setWorkspace( workspace );
 					//creador.ejecutar(CreadorWindows.CREAR_BUILD);
 					//creador.ejecutar(CreadorWindows.CREAR_ANT);
 					//creador.ejecutar(CreadorWindows.CREAR_PUSH_RUN);
+					shell.close();
 				}
 				
 				else {
@@ -159,4 +165,13 @@ public class Inicial {
 		btnGuardar.setText("Guardar");
 
 	}
+
+	public static CreadorWindows getCreador() {
+		return creador;
+	}
+
+	public static void setCreador(CreadorWindows creador) {
+		Inicial.creador = creador;
+	}
+	
 }

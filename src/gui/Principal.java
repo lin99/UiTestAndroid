@@ -20,9 +20,6 @@ import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-
-import bash.Creador;
-
 import compilador.Comandos;
 import compilador.Compilador;
 import control.Controlador;
@@ -34,22 +31,32 @@ public class Principal {
 	private Table table;
 	private static Controlador controlador;
 
+	
+	private String pathSDK, workspace;
 	/**
 	 * Launch the application.
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		Inicial inicial;
 		try {
 			Principal window = new Principal();
-			controlador = new Controlador("Tig\\comandos.pan");
-			window.open();
+			inicial = new Inicial( window );
+			inicial.open();
+			if( window.pathSDK!=null && window.workspace!=null ){
+				controlador = new Controlador(window.workspace+"comandos.pan");
+				
+				window.open();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	/**
 	 * Open the window.
+	 * @wbp.parser.entryPoint
 	 */
 	public void open() {
 		Display display = Display.getDefault();
@@ -245,7 +252,7 @@ public class Principal {
 			public void mouseUp(MouseEvent e) {
 				Compilador compilador = new Compilador();
 				try {
-					compilador.crearTest("Tig\\comandos.pan");
+					compilador.crearTest(workspace+"comandos.pan", workspace);
 					System.out.println("Funciono");
 				} catch (Exception e1) {
 					System.out.println(":( no funciono");
@@ -276,14 +283,27 @@ public class Principal {
 			@Override
 			public void mouseUp(MouseEvent e) {
 				
-				
-				
 			}
 		});
 		btnEjecutar.setBounds(466, 157, 75, 25);
 		btnEjecutar.setText("Ejecutar");
 		
-		
-
 	}
+
+	public String getPath() {
+		return pathSDK;
+	}
+
+	public void setPath(String path) {
+		this.pathSDK = path;
+	}
+
+	public String getWorkspace() {
+		return workspace;
+	}
+
+	public void setWorkspace(String workspace) {
+		this.workspace = workspace;
+	}
+	
 }

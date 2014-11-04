@@ -1,14 +1,10 @@
 package compilador;
 
-import gui.Inicial;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-import control.CreadorCarpetas;
 import control.CreadorCarpetasWindows;
 
 public class Compilador {
@@ -17,11 +13,11 @@ public class Compilador {
 	
 	
 	//Cambiar path del archivo de escritura
-	public void crearTest( String nameFile ) throws Exception{
+	public void crearTest( String nameFile, String workspace ) throws Exception{
 		
 		//PATH QUEMADO!!!
 		
-		creadorCarpetas = new CreadorCarpetasWindows("D:\\Directorio\\Tig\\src\\");
+		creadorCarpetas = new CreadorCarpetasWindows(workspace+"src\\");
 		creadorCarpetas.crearCarpetas();
 		
 		String path = creadorCarpetas.getPath();
