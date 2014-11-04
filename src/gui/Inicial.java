@@ -1,6 +1,12 @@
 package gui;
 
+import java.io.File;
+
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.SWT;
@@ -12,6 +18,8 @@ import org.eclipse.swt.events.MouseEvent;
 import bash.CreadorWindows;
 import control.CreadorCarpetasWindows;
 import control.ValidadorTexto;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 
 public class Inicial {
 
@@ -23,7 +31,7 @@ public class Inicial {
 	private Text textPathProyecto;
 	private Text txtIdAndroidApi_1;
 	private Text textNumeroAPI;
-	private Button btnGuardar;
+	private Button btnGuardar;	
 
 	private static CreadorWindows creador;
 	private static CreadorCarpetasWindows creadorCarpetas;
@@ -31,7 +39,6 @@ public class Inicial {
 	private String pathSDK, workspace, api;
 
 	private Principal principal;
-	
 	
 	public Inicial( Principal principal ){
 		super();
@@ -93,7 +100,7 @@ public class Inicial {
 		txtPathDelAndroid.setBounds(22, 48, 125, 21);
 		
 		textPathAndroid = new Text(grpInformacion, SWT.BORDER);
-		textPathAndroid.setBounds(22, 75, 417, 21);
+		textPathAndroid.setBounds(22, 75, 392, 21);
 		
 		txtPathdelProyecto = new Text(grpInformacion, SWT.NONE);
 		txtPathdelProyecto.setEditable(false);
@@ -101,7 +108,7 @@ public class Inicial {
 		txtPathdelProyecto.setBounds(22, 114, 125, 21);
 		
 		textPathProyecto = new Text(grpInformacion, SWT.BORDER);
-		textPathProyecto.setBounds(22, 141, 417, 21);
+		textPathProyecto.setBounds(22, 141, 392, 21);
 		
 		txtIdAndroidApi_1 = new Text(grpInformacion, SWT.NONE);
 		txtIdAndroidApi_1.setEditable(false);
@@ -188,6 +195,55 @@ public class Inicial {
 		});
 		btnGuardar.setBounds(364, 196, 75, 25);
 		btnGuardar.setText("Guardar");
+		
+		Button btnBuscarSDK = new Button(grpInformacion, SWT.NONE);
+		btnBuscarSDK.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				JFileChooser fc = new JFileChooser();
+				JFrame aux = new JFrame();
+				fc.setDialogTitle("Seleccionar el path del SDK");
+				fc.setFileSelectionMode( JFileChooser.DIRECTORIES_ONLY );
+				
+				int returnVal = fc.showOpenDialog( aux );
+				if( returnVal == JFileChooser.APPROVE_OPTION ){
+					File file = fc.getSelectedFile();
+					textPathAndroid.setText( file.getAbsolutePath()+"\\" );
+				}
+				aux.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				aux.dispose();
+				aux = null;
+			}
+		});
+		btnBuscarSDK.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+			}
+		});
+		btnBuscarSDK.setBounds(420, 73, 31, 25);
+		btnBuscarSDK.setText("...");
+		
+		Button btnBuscarWorkspace = new Button(grpInformacion, SWT.NONE);
+		btnBuscarWorkspace.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				JFileChooser fc = new JFileChooser();
+				JFrame aux = new JFrame();
+				fc.setDialogTitle("Seleccionar el path del Workspace");
+				fc.setFileSelectionMode( JFileChooser.DIRECTORIES_ONLY );
+				
+				int returnVal = fc.showOpenDialog( aux );
+				if( returnVal == JFileChooser.APPROVE_OPTION ){
+					File file = fc.getSelectedFile();
+					textPathProyecto.setText( file.getAbsolutePath()+"\\" );
+				}
+				aux.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				aux.dispose();
+				aux = null;
+			}
+		});
+		btnBuscarWorkspace.setBounds(420, 139, 31, 25);
+		btnBuscarWorkspace.setText("...");
 
 	}
 
@@ -198,5 +254,4 @@ public class Inicial {
 	public static void setCreador(CreadorWindows creador) {
 		Inicial.creador = creador;
 	}
-	
 }
