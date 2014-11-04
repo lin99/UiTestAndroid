@@ -19,7 +19,7 @@ public class CreadorWindows extends Creador{
 	static final String SHELL= "shell uiautomator runtest"; 
 	static final String C = "-c";
 	
-
+	static String pathWorkspace;
 	
  	
 
@@ -44,8 +44,13 @@ public class CreadorWindows extends Creador{
 	
 	@Override
 	public void batCrearBuild() {
+<<<<<<< HEAD
 		String instruccion = "\""+pathAndroid+"\"" + TOOL + " " + CREATE + " "+nombreProyecto+ " " + T + " "+numeroAPI+ 
 							" "+ P + " " + "\""+pathWorkspace+nombreProyecto+"\"";
+=======
+		String instruccion = pathAndroid + TOOL + " " + CREATE + " "+nombreProyecto+ " " + T + " "+numeroAPI+ 
+							" "+ P + " " + pathWorkspace +nombreProyecto;
+>>>>>>> origin/AgregadaEjecutar
 		System.out.println(instruccion);
 		
 		StringBuilder sb = new StringBuilder();
@@ -106,13 +111,18 @@ public class CreadorWindows extends Creador{
 		String archivo = seleccionar(n);
 		String comando;
 		try {
+			System.out.println(archivo);
+			System.out.println(pathWorkspace);
 			Process proceso = Runtime.getRuntime().exec(archivo);
+		
 			BufferedReader lector = new BufferedReader (new InputStreamReader (proceso.getInputStream()));
-            while ((comando = lector.readLine()) != null) {
+		
+			while ((comando = lector.readLine()) != null) {
                 System.out.println(comando);
             }
                 lector.close();
             }catch (Exception err) {
+            	System.out.println("Error al ejecutar");
             }
 		System.out.println(n);
 		
@@ -120,7 +130,7 @@ public class CreadorWindows extends Creador{
 
 
 	private static String seleccionar(int n) {
-		String nombre = pathWorkspace + "Bash/";
+		String nombre = pathWorkspace + "Bash\\";
 		if (n == CREAR_BUILD){
 			nombre += "crearBuild.bat";
 		}else if(n == CREAR_ANT){

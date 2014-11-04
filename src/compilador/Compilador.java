@@ -17,7 +17,7 @@ public class Compilador {
 		
 		//PATH QUEMADO!!!
 		
-		creadorCarpetas = new CreadorCarpetasWindows(workspace+"src\\");
+		creadorCarpetas = new CreadorCarpetasWindows(workspace+"\\Tig\\src\\");
 		creadorCarpetas.crearCarpetas();
 		
 		String path = creadorCarpetas.getPath();
