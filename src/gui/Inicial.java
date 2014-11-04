@@ -169,16 +169,16 @@ public class Inicial {
 					
 					principal.setPath( pathSDK );
 					principal.setWorkspace( workspace );
-<<<<<<< HEAD
+
 					//creador.ejecutar(CreadorWindows.CREAR_BUILD);
 					//creador.ejecutar(CreadorWindows.CREAR_ANT);
 					//creador.ejecutar(CreadorWindows.CREAR_PUSH_RUN);
 					if( creado )
 						shell.close();
-=======
 					principal.setApi(api);
-					shell.close();
->>>>>>> origin/AgregadaEjecutar
+					
+					
+
 				}
 				
 				else {
