@@ -5,22 +5,20 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
 
-import control.CreadorCarpetasWindows;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Compilador {
 	
-	CreadorCarpetasWindows creadorCarpetas;
+	//CreadorCarpetasWindows creadorCarpetas;
 	
 	
 	//Cambiar path del archivo de escritura
 	public void crearTest( String nameFile, String workspace ) throws Exception{
 		
-		//PATH QUEMADO!!!
+		//creadorCarpetas = new CreadorCarpetasWindows(workspace+"\\Tig\\src\\");
+		//creadorCarpetas.crearCarpetas();
 		
-		creadorCarpetas = new CreadorCarpetasWindows(workspace+"\\Tig\\src\\");
-		creadorCarpetas.crearCarpetas();
-		
-		String path = creadorCarpetas.getPath();
+		String path = (workspace+"\\Tig\\src\\");
 		BufferedReader br = new BufferedReader( new FileReader( nameFile ) );
 		PrintWriter pw = new PrintWriter(path + "TestUi.java");
 		StringBuilder sb = new StringBuilder();
@@ -74,6 +72,10 @@ public class Compilador {
 			args = new String[ st.countTokens()-1 ];
 			comando = st.nextToken();
 			
+			for( int i = 0; st.hasMoreTokens() ; i++) {
+				args[i] = st.nextToken();
+			}
+			
 			sb.append( agregarComando( comando, args ) );
 			
 		}
@@ -83,22 +85,52 @@ public class Compilador {
 
 	private StringBuilder agregarComando(String comando, String[] args) {
 		StringBuilder res = new StringBuilder();
+		
 		if( comando.equals(Comandos.ROTATE) ){
+			
 			if( args[0].equals(Comandos.IZQUIERDA) ){
-				res.append("\ngetUiDevice().setOrientationLeft();\n");
+				res.append("\n getUiDevice().setOrientationLeft(); \n");
 			} else if( args[0].equals(Comandos.DERECHA) ){
-				res.append("\ngetUiDevice().setOrientationRight();\n");
+				res.append("\n getUiDevice().setOrientationRight(); \n");
 			}
+			
 		} else if( comando.equals(Comandos.HOME) ){
-			res.append("\ngetUiDevice().pressHome();\n") ;
+			res.append("\n getUiDevice().pressHome();\n") ;
+			
 		} else if( comando.equals(Comandos.ATRAS) ){
-			res.append("\ngetUiDevice().pressBack();\n") ;
+			res.append("\n getUiDevice().pressBack();\n") ;
+			
 		} else if( comando.equals(Comandos.APPS_RECIENTES) ){
-			res.append("\ngetUiDevice().pressRecentApps();\n") ;
+			res.append("\n getUiDevice().pressRecentApps(); \n") ;
+			
 		} else if( comando.equals(Comandos.INGRESAR_TEXTO) ){
-			res.append("\ngetUiDevice().pressHome();\n") ;
+			ingresarTexto(res, args);
+			//res.append("\ngetUiDevice().pressHome();\n") ;
+			
+		} else if( comando.equals(Comandos.CLICK) ){
+			try{
+				int x = Integer.parseInt( args[0] );
+				int y = Integer.parseInt( args[1] );
+				res.append("\n getUiDevice().click("+x+", "+y+"); \n") ;
+			} catch( Exception e) {
+				//Hacer un procedimiento mas indicado
+				System.out.println("Comando Click no Ingresado");
+				e.printStackTrace();
+			}
 		}
 		return res;
+	}
+
+	private void ingresarTexto(StringBuilder res, String[] args) {
+		StringBuilder input = new StringBuilder();
+		
+		for( int i = 0 ; i < args.length; i++){
+			if( i>0 )
+				input.append(" ");
+			input.append( args[i] );
+		}
+		
+		//Not implement Yet
 	}
 	
 	

@@ -153,8 +153,8 @@ public class Inicial {
 						creado = false;
 					}
 					
-					workspace = textPathProyecto.getText()+"Tig\\";
-					creadorCarpetas = new CreadorCarpetasWindows(workspace+"src\\");
+					workspace = textPathProyecto.getText();
+					creadorCarpetas = new CreadorCarpetasWindows(workspace+"Tig\\src\\");
 
 					aux = creadorCarpetas.crearCarpetas();
 					System.out.println("workspace: "+aux);
@@ -165,9 +165,9 @@ public class Inicial {
 					}
 					
 					
-					workspace = textPathProyecto.getText();
+					//workspace = textPathProyecto.getText();
 					
-					creador = new CreadorWindows(textPathAndroid.getText(), textPathProyecto.getText(), 
+					creador = new CreadorWindows(textPathAndroid.getText(), workspace, 
 							"TestUi", textNumeroAPI.getText(),
 							"Tig");
 					creador.batCrearBuild();
