@@ -18,9 +18,11 @@ import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import bash.CreadorWindows;
 import control.CreadorCarpetasWindows;
-import control.ValidadorTexto;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
+import texto.Mensajes;
+import texto.ValidadorTexto;
 
 public class Inicial {
 
@@ -41,11 +43,16 @@ public class Inicial {
 
 	private Principal principal;
 	
-	public Inicial( Principal principal ){
+	private MensajeError mensajeError;
+	
+	private StringBuilder mensajes;
+	
+	public Inicial( Principal principal){
 		super();
 		pathSDK = "No asignado";
 		workspace = "No asignado";
 		this.principal = principal;
+
 	}
 	
 	/**
@@ -132,9 +139,7 @@ public class Inicial {
 				validador = new ValidadorTexto(textPathProyecto.getText().toString(),validador.PATH_PROYECTO);
 				boolean v2 = validador.esValido();
 				System.out.println(textPathProyecto.getText().toString()+" "+validador.PATH_ANDROID);
-				
-				
-				
+	
 				validador = new ValidadorTexto(textNumeroAPI.getText().toString(),validador.NUMERO_API);
 				boolean v5 = validador.esValido();
 				System.out.println(textNumeroAPI.getText().toString()+" "+validador.PATH_ANDROID);
@@ -187,12 +192,25 @@ public class Inicial {
 					if( creado )
 						shell.close();
 					principal.setApi(api);
-					
-					
-
 				}
 				
+				
 				else {
+					mensajeError = new MensajeError();
+					mensajes = new StringBuilder();
+					
+					if(!v1){
+						mensajes.append(Mensajes.MJS_ERROR_SDK + "\n");
+						//mensajeError.open( Mensajes.MJS_ERROR_SDK );
+					}if(!v2){
+						mensajes.append(Mensajes.MJS_DIRECTORIO + "\n");
+					}if(!v5){
+						mensajes.append(Mensajes.MJS_API+ "\n");
+					}
+					
+					mensajeError.open(mensajes.toString());
+					
+					mensajeError = null;
 					System.out.println("NO! (toca hacer una ventana!)");
 				}
 			}

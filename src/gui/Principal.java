@@ -96,6 +96,7 @@ public class Principal {
 		Inicial inicial;
 		try {
 			Principal window = new Principal();
+			MensajeError mensajeError = new MensajeError();
 			inicial = new Inicial( window );
 			inicial.open();
 			if( window.pathSDK!=null && window.workspace!=null ){
