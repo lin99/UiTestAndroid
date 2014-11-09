@@ -15,7 +15,7 @@ public class Main {
 				"2", "Tig");
 		
 		creadorWindows.batCrearBuild();
-		creadorWindows.batAntBuild();
+		creadorWindows.batAntBuild("D:");
 		creadorWindows.batPushRun();
 		creadorWindows.ejecutar(CreadorWindows.CREAR_BUILD);
 		creadorWindows.ejecutar(CreadorWindows.CREAR_ANT);

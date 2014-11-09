@@ -79,6 +79,8 @@ public class Principal {
 	private TreeViewer treeViewer;
 	private TableViewer tableViewer;
 	private ScreenshotAction screenshotAction;
+	private Text nameComponentClick;
+	private Text nameComponentText;
 	
 	public String getApi() {
 		return api;
@@ -131,7 +133,7 @@ public class Principal {
 		screenshotAction = new ScreenshotAction(this);
 		Model.createInstance( this );
 		shlUitestandroid = new Shell();
-		shlUitestandroid.setSize(890, 551);
+		shlUitestandroid.setSize(899, 600);
 		shlUitestandroid.setText("UiTestAndroid");
 		
 		Group grpGrupo = new Group(shlUitestandroid, SWT.NONE);
@@ -140,7 +142,7 @@ public class Principal {
 		
 		Group grpAcciones = new Group(shlUitestandroid, SWT.NONE);
 		grpAcciones.setText("Acciones");
-		grpAcciones.setBounds(10, 222, 288, 213);
+		grpAcciones.setBounds(10, 259, 288, 213);
 		
 		final StyledText accionesTexto = new StyledText(grpAcciones, SWT.BORDER);
 		accionesTexto.setBounds(0, 24, 288, 189);
@@ -269,6 +271,10 @@ public class Principal {
 		btnAgregarComponente.setText("Agregar");
 		btnAgregarComponente.setBounds(278, 30, 75, 25);
 		
+		nameComponentClick = new Text(grpComponente, SWT.BORDER);
+		nameComponentClick.setEnabled(false);
+		nameComponentClick.setBounds(25, 32, 220, 21);
+		
 		TabItem tbtmTexto = new TabItem(tabFolder, SWT.NONE);
 		tbtmTexto.setText("Texto");
 		
@@ -289,8 +295,16 @@ public class Principal {
 				accionesTexto.append(Comandos.INGRESAR_TEXTO + " "+ text1.getText() + "\n");
 			}
 		});
-		btnCrearAccion.setBounds(115, 63, 75, 25);
+		btnCrearAccion.setBounds(112, 92, 75, 25);
 		btnCrearAccion.setText("Crear Accion");
+		
+		nameComponentText = new Text(composite_2, SWT.BORDER);
+		nameComponentText.setEnabled(false);
+		nameComponentText.setBounds(112, 49, 220, 21);
+		
+		Label lblComponente = new Label(composite_2, SWT.NONE);
+		lblComponente.setBounds(23, 55, 83, 15);
+		lblComponente.setText("Componente:");
 		
 		TabItem tabAssert = new TabItem(tabFolder, SWT.NONE);
 		tabAssert.setText("Assert");
@@ -438,7 +452,7 @@ public class Principal {
 				aux = null;
 			}
 		});
-		btnGuardarAcciones.setBounds(10, 441, 114, 25);
+		btnGuardarAcciones.setBounds(10, 478, 114, 25);
 		btnGuardarAcciones.setText("Guardar Acciones");
 		
 		Button btnCargarAcciones = new Button(shlUitestandroid, SWT.NONE);
@@ -458,7 +472,7 @@ public class Principal {
 				aux = null;
 			}
 		});
-		btnCargarAcciones.setBounds(153, 441, 98, 25);
+		btnCargarAcciones.setBounds(153, 478, 98, 25);
 		btnCargarAcciones.setText("Cargar Acciones");
 		
 		Group grpComponentes = new Group(shlUitestandroid, SWT.NONE);
@@ -495,7 +509,7 @@ public class Principal {
 		
 		canvas = new Canvas(shlUitestandroid, SWT.NONE);
 		canvas.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
-		canvas.setBounds(10, 10, 379, 206);
+		canvas.setBounds(10, 10, 379, 241);
 		canvas.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseUp(MouseEvent e) {
@@ -656,6 +670,10 @@ public class Principal {
         // udpate the lower right corner table to show the attributes of the node
         tableViewer.setInput(
                 Model.getModel().getSelectedNode().getAttributesArray());
+        for(Object o : Model.getModel().getSelectedNode().getAttributesArray() ){
+        	AttributePair ap = (AttributePair) o;
+        	System.out.println("KEY:"+ap.key+" VALUE"+ap.value);
+        }
     }
     
     private int getInverseScaledSize(int size) {
@@ -675,7 +693,8 @@ public class Principal {
     }
 	
 	private float calcScreenshotScale(int width, int height) {
-        Rectangle r = findCurrentMonitor().getClientArea();
+		
+        Rectangle r = canvas.getBounds();//findCurrentMonitor().getClientArea();
         // add some room
         width += 300;
         height += 100;
@@ -683,8 +702,9 @@ public class Principal {
                 r.height / (float)height));
         // if we are not showing the original size, scale down a bit more
         if (scale < 1.0f) {
-            scale *= 0.7f;
+            scale *= 1.2f;
         }
+        System.out.println();
         return scale;
     }
 	

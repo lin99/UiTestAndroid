@@ -1,6 +1,7 @@
 package gui;
 
 import java.io.File;
+import java.util.StringTokenizer;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -170,10 +171,14 @@ public class Inicial {
 					creador = new CreadorWindows(textPathAndroid.getText(), workspace, 
 							"TestUi", textNumeroAPI.getText(),
 							"Tig");
-					creador.batCrearBuild();
-					creador.batAntBuild();
-					creador.batPushRun();
+					StringTokenizer st = new StringTokenizer(workspace,"\\");
 					
+					String disco = st.nextToken();
+							
+					creador.batCrearBuild();
+					creador.batAntBuild(disco);
+					creador.batPushRun();
+					System.out.println("TOKEN "+ st);
 					principal.setPath( pathSDK );
 					principal.setWorkspace( workspace );
 
