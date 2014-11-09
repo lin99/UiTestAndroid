@@ -140,7 +140,7 @@ public class Principal {
 		
 		Group grpAcciones = new Group(shlUitestandroid, SWT.NONE);
 		grpAcciones.setText("Acciones");
-		grpAcciones.setBounds(10, 222, 288, 213);
+		grpAcciones.setBounds(10, 254, 288, 213);
 		
 		final StyledText accionesTexto = new StyledText(grpAcciones, SWT.BORDER);
 		accionesTexto.setBounds(0, 24, 288, 189);
@@ -308,21 +308,27 @@ public class Principal {
 		
 		Group grpPropiedades = new Group(shlUitestandroid, SWT.NONE);
 		grpPropiedades.setText("Propiedades");
-		grpPropiedades.setBounds(650, 10, 203, 189);
+		grpPropiedades.setBounds(715, 10, 203, 189);
 		
 		Composite tableContainer = new Composite(grpPropiedades, SWT.NONE);
-		tableContainer.setBounds(10, 28, 193, 161);
-		tableContainer.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
+		tableContainer.setBounds(0, 22, 203, 167);
+		//tableContainer.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1));
         TableColumnLayout columnLayout = new TableColumnLayout();
         tableContainer.setLayout(columnLayout);
 		tableViewer = new TableViewer(tableContainer, SWT.BORDER | SWT.FULL_SELECTION);
 		Table table = tableViewer.getTable();
 		table.setLinesVisible( true );
-		table.setBounds(10, 23, 183, 156);
+		table.setLocation(0, 0);
+		table.setSize(203, 167);
 		
 		tableViewer.setContentProvider(new ArrayContentProvider());
-        TableViewerColumn tableViewerColumnKey = new TableViewerColumn(tableViewer, SWT.NONE);
-        TableColumn tblclmnKey = tableViewerColumnKey.getColumn();
+        //TableViewerColumn tableViewerColumnKey = new TableViewerColumn(tableViewer, SWT.NONE);
+        //TableColumn tblclmnKey = tableViewerColumnKey.getColumn();
+		TableViewerColumn tableViewerColumnKey = new TableViewerColumn(tableViewer, SWT.NONE);
+		TableColumn tblclmnAtributo = tableViewerColumnKey.getColumn();
+		tblclmnAtributo.setToolTipText("");
+		tblclmnAtributo.setWidth(100);
+		tblclmnAtributo.setText("Atributo");
         tableViewerColumnKey.setLabelProvider(new ColumnLabelProvider() {
             @Override
             public String getText(Object element) {
@@ -333,13 +339,15 @@ public class Principal {
                 return super.getText(element);
             }
         });
-        columnLayout.setColumnData(tblclmnKey,
+        columnLayout.setColumnData(tblclmnAtributo,
                 new ColumnWeightData(1, ColumnWeightData.MINIMUM_WIDTH, true));
+       // TableViewerColumn tableViewerColumnValue = new TableViewerColumn(tableViewer, SWT.NONE);
+        //tableViewerColumnValue.setEditingSupport(new AttributeTableEditingSupport(tableViewer));
         TableViewerColumn tableViewerColumnValue = new TableViewerColumn(tableViewer, SWT.NONE);
-        tableViewerColumnValue.setEditingSupport(new AttributeTableEditingSupport(tableViewer));
-        TableColumn tblclmnValue = tableViewerColumnValue.getColumn();
-        columnLayout.setColumnData(tblclmnValue,
-                new ColumnWeightData(2, ColumnWeightData.MINIMUM_WIDTH, true));
+		tableViewerColumnValue.setEditingSupport(new AttributeTableEditingSupport(tableViewer));
+		TableColumn tblclmnValor = tableViewerColumnValue.getColumn();
+		tblclmnValor.setWidth(100);
+		tblclmnValor.setText("Valor");
         tableViewerColumnValue.setLabelProvider(new ColumnLabelProvider() {
             @Override
             public String getText(Object element) {
@@ -370,6 +378,8 @@ public class Principal {
 				screenshotAction.run();
 			}
 		});
+		columnLayout.setColumnData(tblclmnValor,
+                new ColumnWeightData(2, ColumnWeightData.MINIMUM_WIDTH, true));
 		
 		mntmSnapshot.setImage(SWTResourceManager.getImage(Principal.class, "/res/mipmap-mdpi/sym_def_app_icon.png"));
 		mntmSnapshot.setText("Snapshot");
@@ -388,7 +398,7 @@ public class Principal {
 				}
 			}
 		});
-		btnCompilar.setBounds(314, 297, 75, 25);
+		btnCompilar.setBounds(314, 229, 75, 25);
 		btnCompilar.setText("Compilar");
 		
 		Button btnGuardar = new Button(shlUitestandroid, SWT.NONE);
@@ -403,7 +413,7 @@ public class Principal {
 				}
 			}
 		});
-		btnGuardar.setBounds(314, 266, 75, 25);
+		btnGuardar.setBounds(314, 298, 75, 25);
 		btnGuardar.setText("Guardar");
 		
 		Button btnEjecutar = new Button(shlUitestandroid, SWT.NONE);
@@ -418,7 +428,7 @@ public class Principal {
 				creador.ejecutar(Creador.CREAR_PUSH_RUN);
 			}
 		});
-		btnEjecutar.setBounds(314, 328, 75, 25);
+		btnEjecutar.setBounds(314, 360, 75, 25);
 		btnEjecutar.setText("Ejecutar");
 		
 		Button btnGuardarAcciones = new Button(shlUitestandroid, SWT.NONE);
@@ -438,7 +448,7 @@ public class Principal {
 				aux = null;
 			}
 		});
-		btnGuardarAcciones.setBounds(10, 441, 114, 25);
+		btnGuardarAcciones.setBounds(10, 473, 114, 25);
 		btnGuardarAcciones.setText("Guardar Acciones");
 		
 		Button btnCargarAcciones = new Button(shlUitestandroid, SWT.NONE);
@@ -458,7 +468,7 @@ public class Principal {
 				aux = null;
 			}
 		});
-		btnCargarAcciones.setBounds(153, 441, 98, 25);
+		btnCargarAcciones.setBounds(153, 473, 98, 25);
 		btnCargarAcciones.setText("Cargar Acciones");
 		
 		Group grpComponentes = new Group(shlUitestandroid, SWT.NONE);
@@ -675,7 +685,7 @@ public class Principal {
     }
 	
 	private float calcScreenshotScale(int width, int height) {
-        Rectangle r = findCurrentMonitor().getClientArea();
+		Rectangle r = canvas.getBounds();//findCurrentMonitor().getClientArea();
         // add some room
         width += 300;
         height += 100;
@@ -683,7 +693,7 @@ public class Principal {
                 r.height / (float)height));
         // if we are not showing the original size, scale down a bit more
         if (scale < 1.0f) {
-            scale *= 0.7f;
+            scale *= 1.2f;
         }
         return scale;
     }

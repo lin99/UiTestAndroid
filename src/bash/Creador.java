@@ -15,7 +15,7 @@ public abstract class Creador {
 	
 	public abstract void batCrearBuild();
 		
-	public abstract void batAntBuild();
+	public abstract void batAntBuild(String disco);
 		
 	
 	

@@ -65,29 +65,27 @@ public class Compilador {
 	private StringBuilder contenido(BufferedReader br) throws Exception {
 		StringBuilder sb = new StringBuilder();
 		StringTokenizer st;
-		String comando, args[];
-		for( String line = br.readLine() ; line!=null && line.length()>0; line = br.readLine() ){
-			System.out.println("->"+line);
+		String comando, arg;
+		for( String line = br.readLine() ; line!=null && line.length()>0; line = br.readLine() ){		
+			
 			st = new StringTokenizer( line );
-			args = new String[ st.countTokens()-1 ];
 			comando = st.nextToken();
+			System.out.println("->"+line + "  COMANDO: " + comando);
+			arg = line.substring(comando.length());
 			
-			for( int i = 0; st.hasMoreTokens() ; i++) {
-				args[i] = st.nextToken();
-			}
 			
-			sb.append( agregarComando( comando, args ) );
+			sb.append( agregarComando( comando, arg.trim() ) );
 			
 		}
 		
 		return sb;
 	}
 
-	private StringBuilder agregarComando(String comando, String[] args) {
+	private StringBuilder agregarComando(String comando, String arg) {
 		StringBuilder res = new StringBuilder();
-		
+		String args[];
 		if( comando.equals(Comandos.ROTATE) ){
-			
+			args = arg.split(" ");
 			if( args[0].equals(Comandos.IZQUIERDA) ){
 				res.append("\n getUiDevice().setOrientationLeft(); \n");
 			} else if( args[0].equals(Comandos.DERECHA) ){
@@ -104,10 +102,11 @@ public class Compilador {
 			res.append("\n getUiDevice().pressRecentApps(); \n") ;
 			
 		} else if( comando.equals(Comandos.INGRESAR_TEXTO) ){
-			ingresarTexto(res, args);
-			//res.append("\ngetUiDevice().pressHome();\n") ;
+			
+			ingresarTexto(res, arg);
 			
 		} else if( comando.equals(Comandos.CLICK) ){
+			args = arg.split(" ");
 			try{
 				int x = Integer.parseInt( args[0] );
 				int y = Integer.parseInt( args[1] );
@@ -117,18 +116,33 @@ public class Compilador {
 				System.out.println("Comando Click no Ingresado");
 				e.printStackTrace();
 			}
+		} else if( comando.equals(Comandos.CLICK_COMPONENT) ){
+			res.append( clickComponente( arg ) );
 		}
 		return res;
 	}
 
-	private void ingresarTexto(StringBuilder res, String[] args) {
-		StringBuilder input = new StringBuilder();
+	
+//	 UiCollection objeto = new UiCollection(new UiSelector()
+//	   .className("android.widget.LinearLayout"));
+//	 String s = "TEXTO!!!!";
+//	 
+//	 UiObject campo = objeto.getChildByText(new UiSelector()
+//	   .className("android.widget.EditText"), "Escribe un mensaje");
+//	 
+//
+//	System.out.println("AQUI ->" + campo.setText(s));
+//	System.out.println(" ->" + campo.getText()); 
+//	 assertEquals(campo.getText(), s);
+	
+	private String clickComponente( String arg ) {
 		
-		for( int i = 0 ; i < args.length; i++){
-			if( i>0 )
-				input.append(" ");
-			input.append( args[i] );
-		}
+		return null;
+	}
+
+	private void ingresarTexto(StringBuilder res, String arg) {
+		StringBuilder input = new StringBuilder( arg );
+		
 		
 		//Not implement Yet
 	}
