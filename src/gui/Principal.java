@@ -131,7 +131,11 @@ public class Principal {
 		screenshotAction = new ScreenshotAction(this);
 		Model.createInstance( this );
 		shlUitestandroid = new Shell();
+<<<<<<< HEAD
 		shlUitestandroid.setSize(944, 610);
+=======
+		shlUitestandroid.setSize(890, 551);
+>>>>>>> parent of 979d200... ModificacionClases Inicial y Compilador
 		shlUitestandroid.setText("UiTestAndroid");
 		
 		Group grpGrupo = new Group(shlUitestandroid, SWT.NONE);
@@ -140,7 +144,11 @@ public class Principal {
 		
 		Group grpAcciones = new Group(shlUitestandroid, SWT.NONE);
 		grpAcciones.setText("Acciones");
+<<<<<<< HEAD
 		grpAcciones.setBounds(10, 254, 288, 213);
+=======
+		grpAcciones.setBounds(10, 222, 288, 213);
+>>>>>>> parent of 979d200... ModificacionClases Inicial y Compilador
 		
 		final StyledText accionesTexto = new StyledText(grpAcciones, SWT.BORDER);
 		accionesTexto.setBounds(0, 24, 288, 189);
@@ -447,7 +455,11 @@ public class Principal {
 				aux = null;
 			}
 		});
+<<<<<<< HEAD
 		btnGuardarAcciones.setBounds(10, 473, 114, 25);
+=======
+		btnGuardarAcciones.setBounds(10, 441, 114, 25);
+>>>>>>> parent of 979d200... ModificacionClases Inicial y Compilador
 		btnGuardarAcciones.setText("Guardar Acciones");
 		
 		Button btnCargarAcciones = new Button(shlUitestandroid, SWT.NONE);
@@ -467,7 +479,11 @@ public class Principal {
 				aux = null;
 			}
 		});
+<<<<<<< HEAD
 		btnCargarAcciones.setBounds(153, 473, 98, 25);
+=======
+		btnCargarAcciones.setBounds(153, 441, 98, 25);
+>>>>>>> parent of 979d200... ModificacionClases Inicial y Compilador
 		btnCargarAcciones.setText("Cargar Acciones");
 		
 		Group grpComponentes = new Group(shlUitestandroid, SWT.NONE);
@@ -504,7 +520,11 @@ public class Principal {
 		
 		canvas = new Canvas(shlUitestandroid, SWT.NONE);
 		canvas.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
+<<<<<<< HEAD
 		canvas.setBounds(10, 10, 438, 238);
+=======
+		canvas.setBounds(10, 10, 379, 206);
+>>>>>>> parent of 979d200... ModificacionClases Inicial y Compilador
 		canvas.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseUp(MouseEvent e) {
