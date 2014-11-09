@@ -60,15 +60,13 @@ public class CreadorWindows extends Creador{
 	}
 
 	@Override
-	public void batAntBuild(String disco) {
+	public void batAntBuild() {
 	
 		String instruccion  = "ant " +  "build";
 		
 		
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append(disco);
-		sb.append("\n");
 		sb.append("cd " + pathWorkspace+nombreProyecto);
 		sb.append("\n");
 		sb.append(instruccion);
