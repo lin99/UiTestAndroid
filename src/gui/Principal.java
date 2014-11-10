@@ -1,8 +1,5 @@
 package gui;
 
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.viewers.ArrayContentProvider;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
@@ -104,7 +101,6 @@ public class Principal {
 		Inicial inicial;
 		try {
 			Principal window = new Principal();
-			MensajeError mensajeError = new MensajeError();
 			inicial = new Inicial( window );
 			inicial.open();
 			if( window.pathSDK!=null && window.workspace!=null ){
@@ -316,7 +312,7 @@ public class Principal {
 			}
 		});
 		btnCrearAccion.setBounds(256, 172, 75, 25);
-		btnCrearAccion.setText("Crear Accion");
+		btnCrearAccion.setText("Agregar");
 		
 		Label lblComponente = new Label(composite_2, SWT.NONE);
 		lblComponente.setBounds(22, 128, 83, 15);
@@ -414,9 +410,9 @@ public class Principal {
 				Compilador compilador = new Compilador();
 				try {
 					compilador.crearTest(workspace+"comandos.pan", workspace);
-					System.out.println("Funciono");
+		
 				} catch (Exception e1) {
-					System.out.println(":( no funciono");
+				
 					e1.printStackTrace();
 				}
 			}
@@ -430,9 +426,9 @@ public class Principal {
 			public void mouseUp(MouseEvent e) {
 				boolean esExistoso = controlador.guardar(accionesTexto.getText());
 				if(esExistoso){
-					System.out.println("Todo bien");
+					
 				}else{
-					System.out.println("Pu;alada");
+				
 				}
 			}
 		});
@@ -444,7 +440,7 @@ public class Principal {
 			@Override
 			public void mouseUp(MouseEvent e) {
 				creador = new CreadorWindows(pathSDK, workspace, "TestUi", api, "Tig");
-				System.out.println( creador.getPathWorkspace() );
+				
 				
 				creador.ejecutar( Creador.CREAR_BUILD );
 				creador.ejecutar( Creador.CREAR_ANT );
@@ -573,7 +569,7 @@ public class Principal {
         // putting another root node on top of existing root node
         // because Tree seems to like to hide the root node
         wrapper.addChild( Model.getModel().getXmlRootNode() );
-        System.out.println("Wrapper: "+wrapper.x+" "+wrapper.y);
+
         treeViewer.setInput(wrapper);
         treeViewer.getTree().setFocus();
         // resize & reposition window

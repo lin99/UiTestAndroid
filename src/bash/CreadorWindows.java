@@ -19,7 +19,7 @@ public class CreadorWindows extends Creador{
 	static final String SHELL= "shell uiautomator runtest"; 
 	static final String C = "-c";
 	
-	static String pathWorkspace;
+	//static Sting pathWorkspace;
 	
  	
 	public CreadorWindows(String pathAndroid, String pathProyecto, String nombreClase, String nombrePaquete, String numeroAPI, String nombreProyecto){

@@ -6,23 +6,22 @@ import java.util.StringTokenizer;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import bash.CreadorWindows;
-import control.CreadorCarpetasWindows;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 
 import texto.Mensajes;
 import texto.ValidadorTexto;
+import bash.CreadorWindows;
+import control.CreadorCarpetasWindows;
 
 public class Inicial {
 
@@ -132,17 +131,17 @@ public class Inicial {
 			public void mouseUp(MouseEvent e) {
 				ValidadorTexto validador = new ValidadorTexto();
 				
-				validador = new ValidadorTexto(textPathAndroid.getText().toString(),validador.PATH_ANDROID);
+				validador = new ValidadorTexto(textPathAndroid.getText().toString(),ValidadorTexto.PATH_ANDROID);
 				boolean v1 = validador.esValido();
-				System.out.println(textPathAndroid.getText().toString()+" "+validador.PATH_ANDROID);
+				System.out.println(textPathAndroid.getText().toString()+" "+ValidadorTexto.PATH_ANDROID);
 				
-				validador = new ValidadorTexto(textPathProyecto.getText().toString(),validador.PATH_PROYECTO);
+				validador = new ValidadorTexto(textPathProyecto.getText().toString(),ValidadorTexto.PATH_PROYECTO);
 				boolean v2 = validador.esValido();
-				System.out.println(textPathProyecto.getText().toString()+" "+validador.PATH_ANDROID);
+				System.out.println(textPathProyecto.getText().toString()+" "+ValidadorTexto.PATH_ANDROID);
 	
-				validador = new ValidadorTexto(textNumeroAPI.getText().toString(),validador.NUMERO_API);
+				validador = new ValidadorTexto(textNumeroAPI.getText().toString(),ValidadorTexto.NUMERO_API);
 				boolean v5 = validador.esValido();
-				System.out.println(textNumeroAPI.getText().toString()+" "+validador.PATH_ANDROID);
+				System.out.println(textNumeroAPI.getText().toString()+" "+ValidadorTexto.PATH_ANDROID);
 				boolean creado = true;
 			
 				System.out.println(v1 + " " +v2 +  " " +v5);

@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class Compilador {
@@ -72,7 +70,7 @@ public class Compilador {
 			
 			st = new StringTokenizer( line );
 			comando = st.nextToken();
-			System.out.println("->"+line + "  COMANDO: " + comando);
+			
 			arg = line.substring(comando.length());
 			
 			
@@ -116,7 +114,7 @@ public class Compilador {
 				res.append("\n getUiDevice().click("+x+", "+y+"); \n") ;
 			} catch( Exception e) {
 				//Hacer un procedimiento mas indicado
-				System.out.println("Comando Click no Ingresado");
+				
 				e.printStackTrace();
 			}
 		} else if( comando.equals(Comandos.CLICK_COMPONENT) ){
@@ -139,7 +137,7 @@ public class Compilador {
 	 */
 	private String clickComponente( String arg ) {
 		
-		StringTokenizer st2, st = new StringTokenizer(  arg, "[>][<]");
+		StringTokenizer  st = new StringTokenizer(  arg, "[>][<]");
 		String[] values, atributos = new String[ st.countTokens() ];
 		
 		String text = "", content = "", clase = "", padre = "android.widget.LinearLayout";
@@ -148,7 +146,7 @@ public class Compilador {
 		
 		for(int i = 0 ; st.hasMoreTokens() ; i++ ){
 			atributos[i] = st.nextToken();
-			System.out.println(atributos[i]);
+			
 			values = atributos[i].split(":");
 			if( i==0 && values.length > 1 ){
 				text = values[1];
@@ -161,25 +159,24 @@ public class Compilador {
 			}
 		}
 		
-		System.out.println("TEXT.TRIM"+text.trim());
-		System.out.println("content.TRIM"+content.trim());
+
 		
 		if( !text.trim().equals("") || !content.trim().equals("") ){
 			
 			sb.append("	objeto = new UiCollection(new UiSelector().className(\""+padre+"\"));\n");
 			if(!text.trim().equals("")){
 				
-				sb.append("	campo = objeto.getChildByText(new UiSelector().className(\""+clase+"\"), \""+ text+"\");");
+				sb.append("	campo = objeto.getChildByText(new UiSelector().className(\""+clase+"\"), \""+ text+"\");\n");
 			}else{
 				sb.append("	campo = objeto.getChildByDescription( new UiSelector().className(\""+ clase+"\"), \""+content+"\");\n");
 
 			}
 			
-			sb.append("campo.click();");
+			sb.append(" campo.click();\n");
 		}
 		
 		
-		System.out.println("TO STRING:" + sb.toString());
+	
 		return sb.toString();
 	}
 
@@ -208,24 +205,22 @@ public class Compilador {
 				padre = values[1];
 			}
 		}
-		System.out.println("AGREGANDO TEXTO");
-		System.out.println("TEXT.TRIM"+text.trim());
-		System.out.println("content.TRIM"+content.trim());
+
 		
 		if( !text.trim().equals("") || !content.trim().equals("") ){
 			
 						
-			System.out.println("CLASE:"+clase);
+			
 			if(clase.trim().equals("android.widget.EditText")){
 				sb.append("	objeto = new UiCollection(new UiSelector().className(\""+ padre +"\"));\n");
 				sb.append("	campo = objeto.getChildByText(new UiSelector().className(\""+clase+"\"), \""+ text+"\");\n");
-				sb.append(" campo.setText(\""+texto+"\");");
+				sb.append(" campo.setText(\""+texto+"\");\n");
 			}
 
 		}
 		
 		
-		System.out.println("TO STRING:" + sb.toString());
+	
 		return sb.toString( );
 
 		
