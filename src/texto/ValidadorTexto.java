@@ -78,9 +78,4 @@ public class ValidadorTexto {
 		return m.find();
 	}
 	
-	public static void main(String[] args){
-		ValidadorTexto validador = new ValidadorTexto("",NOMBRE_CLASE);
-		System.out.println(validador.esValido());
-	}
-
 }

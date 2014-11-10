@@ -144,17 +144,17 @@ public class Inicial {
 				System.out.println(textNumeroAPI.getText().toString()+" "+ValidadorTexto.PATH_ANDROID);
 				boolean creado = true;
 			
-				System.out.println(v1 + " " +v2 +  " " +v5);
+		
 				if(v1 && v2 && v5 ){
 					
 					pathSDK = textPathProyecto.getText()+"Bash\\";
 					api = textNumeroAPI.getText();
 					creadorCarpetas = new CreadorCarpetasWindows(pathSDK);
 					boolean aux = creadorCarpetas.crearCarpetas();
-					System.out.println("PATH: "+aux);
+					
 					if( !aux ){
 						pathSDK = null;
-						System.out.println("Error al crear Path");
+					
 						creado = false;
 					}
 					
@@ -162,7 +162,7 @@ public class Inicial {
 					creadorCarpetas = new CreadorCarpetasWindows(workspace+"Tig\\src\\");
 
 					aux = creadorCarpetas.crearCarpetas();
-					System.out.println("workspace: "+aux);
+
 					if( !aux ){
 						workspace = null;
 						System.out.println("Error al crear Carpetas en Workspace");
@@ -207,7 +207,7 @@ public class Inicial {
 					mensajeError.open(mensajes.toString());
 					
 					mensajeError = null;
-					System.out.println("NO! (toca hacer una ventana!)");
+					System.out.println("NO! ");
 				}
 			}
 		});
