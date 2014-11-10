@@ -10,5 +10,6 @@ public class Comandos {
 	public static final String INGRESAR_TEXTO = "Ingresar_Texto:";
 	public static final String CLICK = "click";
 	public static final String CLICK_COMPONENT = "clickC";
+	public static final String TIME = "time";
 
 }

@@ -4,8 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class Compilador {
 	
@@ -29,6 +30,9 @@ public class Compilador {
 		
 		//Agregando definicion de la clase
 		sb.append("public class TestUi extends UiAutomatorTestCase {\n");
+		//Agregando Variables Globales
+		sb.append(" UiCollection objeto;");
+		sb.append(" UiObject campo;");
 		
 		//Agregando Main
 		sb.append("public static void main(String[] args) {\n");
@@ -75,6 +79,7 @@ public class Compilador {
 			
 			
 			sb.append( agregarComando( comando, arg.trim() ) );
+			sb.append( agregarComando( Comandos.TIME, "1000" ) );
 			
 		}
 		
@@ -103,7 +108,7 @@ public class Compilador {
 			
 		} else if( comando.equals(Comandos.INGRESAR_TEXTO) ){
 			
-			ingresarTexto(res, arg);
+			res.append( ingresarTexto(res, arg) );
 			
 		} else if( comando.equals(Comandos.CLICK) ){
 			args = arg.split(" ");
@@ -117,7 +122,11 @@ public class Compilador {
 				e.printStackTrace();
 			}
 		} else if( comando.equals(Comandos.CLICK_COMPONENT) ){
+		
 			res.append( clickComponente( arg ) );
+		} else if( comando.equals( Comandos.TIME ) ){
+			int intervalo = Integer.parseInt( arg );
+			res.append("getUiDevice().waitForWindowUpdate(null,"+intervalo+");");
 		}
 		return res;
 	}
@@ -135,16 +144,115 @@ public class Compilador {
 //	System.out.println(" ->" + campo.getText()); 
 //	 assertEquals(campo.getText(), s);
 	
+	/**
+	 * Realiza el split de los componentes con <, >
+	 * @param arg
+	 * @return
+	 */
 	private String clickComponente( String arg ) {
 		
-		return null;
+		StringTokenizer st2, st = new StringTokenizer(  arg, "[>][<]");
+		String[] values, atributos = new String[ st.countTokens() ];
+		
+		String text = "", content = "", clase = "", padre = "android.widget.LinearLayout";
+		StringBuilder sb = new StringBuilder();
+		
+		
+		for(int i = 0 ; st.hasMoreTokens() ; i++ ){
+			atributos[i] = st.nextToken();
+			System.out.println(atributos[i]);
+			values = atributos[i].split(":");
+			if( i==0 && values.length > 1 ){
+				text = values[1];
+			} else if( i==1 && values.length > 1 ){
+				clase = values[1];
+			} else if (i == 2 && values.length > 1){
+				content = values[1];
+			}else if(i == 3 && values.length > 1){
+				padre = values[1];
+			}
+		}
+		
+		System.out.println("TEXT.TRIM"+text.trim());
+		System.out.println("content.TRIM"+content.trim());
+		
+		if( !text.trim().equals("") || !content.trim().equals("") ){
+			
+			sb.append("	objeto = new UiCollection(new UiSelector().className(\""+padre+"\"));\n");
+			if(!text.trim().equals("")){
+				
+				sb.append("	campo = objeto.getChildByText(new UiSelector().className(\""+clase+"\"), \""+ text+"\");");
+			}else{
+				sb.append("	campo = objeto.getChildByDescription( new UiSelector().className(\""+ clase+"\"), \""+content+"\");\n");
+
+			}
+			
+			sb.append("campo.click();");
+		}
+		
+		
+		System.out.println("TO STRING:" + sb.toString());
+		return sb.toString();
 	}
 
-	private void ingresarTexto(StringBuilder res, String arg) {
-		StringBuilder input = new StringBuilder( arg );
+	private String ingresarTexto(StringBuilder res, String arg) {
+		//StringBuilder input = new StringBuilder( arg );
+		
+		StringTokenizer st2, st = new StringTokenizer(  arg, "[\\[][\\]]");
+		String texto, atrib;
+		atrib = st.nextToken();
+		texto = st.nextToken();
+		String text = "", content = "", clase = "", padre = "android.widget.LinearLayout";
+		StringBuilder sb = new StringBuilder();
+		
+		st2 = new StringTokenizer( atrib, "<>" );
+		String[] values, atributos = new String[ st2.countTokens() ];
+		for(int i = 0 ; st2.hasMoreTokens() ; i++ ){
+			atributos[i] = st2.nextToken();
+			values = atributos[i].split(":");
+			if( i==0 && values.length > 1 ){
+				text = values[1];
+			} else if( i==1 && values.length > 1 ){
+				clase = values[1];
+			} else if ( i == 2 && values.length > 1){
+				content = values[1];
+			} else if(i == 3 && values.length > 1){
+				padre = values[1];
+			}
+		}
+		System.out.println("AGREGANDO TEXTO");
+		System.out.println("TEXT.TRIM"+text.trim());
+		System.out.println("content.TRIM"+content.trim());
+		
+		if( !text.trim().equals("") || !content.trim().equals("") ){
+			
+			
+//			 UiCollection objeto = new UiCollection(new UiSelector()
+//			   .className("android.widget.LinearLayout"));
+//			 String s = "TEXTO!!!!";
+//			 
+//			 UiObject campo = objeto.getChildByText(new UiSelector()
+//			   .className("android.widget.EditText"), "Escribe un mensaje");
+//			 
+		//
+//			System.out.println("AQUI ->" + campo.setText(s));
+			
+			System.out.println("CLASE:"+clase);
+			if(clase.trim().equals("android.widget.EditText")){
+				sb.append("	objeto = new UiCollection(new UiSelector().className(\""+ padre +"\"));\n");
+				sb.append("	campo = objeto.getChildByText(new UiSelector().className(\""+clase+"\"), \""+ text+"\");\n");
+				sb.append(" campo.setText(\""+texto+"\");");
+			}
+//			
+//			sb.append("campo.click();");
+		}
 		
 		
-		//Not implement Yet
+		System.out.println("TO STRING:" + sb.toString());
+		return sb.toString( );
+
+		
+		
 	}
 	
 	

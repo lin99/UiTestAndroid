@@ -79,6 +79,14 @@ public class Principal {
 	private TreeViewer treeViewer;
 	private TableViewer tableViewer;
 	private ScreenshotAction screenshotAction;
+	private Text textClickComponente;
+	private Text textTextoComponente;
+	
+	static String TEXTO = "text";
+    static String DESCRIPCION = "content-desc";
+    static String CLASS = "class";
+    private Text textPadreClick;
+    private Text textPadreTexto;
 	
 	public String getApi() {
 		return api;
@@ -132,12 +140,12 @@ public class Principal {
 		screenshotAction = new ScreenshotAction(this);
 		Model.createInstance( this );
 		shlUitestandroid = new Shell();
-		shlUitestandroid.setSize(890, 551);
+		shlUitestandroid.setSize(921, 615);
 		shlUitestandroid.setText("UiTestAndroid");
 		
 		Group grpGrupo = new Group(shlUitestandroid, SWT.NONE);
 		grpGrupo.setText("Agregar Acciones");
-		grpGrupo.setBounds(404, 222, 449, 241);
+		grpGrupo.setBounds(404, 222, 462, 296);
 		
 		Group grpAcciones = new Group(shlUitestandroid, SWT.NONE);
 		grpAcciones.setText("Acciones");
@@ -147,7 +155,7 @@ public class Principal {
 		accionesTexto.setBounds(0, 24, 288, 189);
 		
 		ScrolledComposite scrolledComposite = new ScrolledComposite(grpGrupo, SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
-		scrolledComposite.setBounds(10, 27, 429, 204);
+		scrolledComposite.setBounds(10, 27, 442, 259);
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
 		
@@ -172,7 +180,7 @@ public class Principal {
 				accionesTexto.append(Comandos.ROTATE + " " +Comandos.IZQUIERDA + "\n");
 			}
 		});
-		btnGirarIzquierda.setBounds(75, 43, 100, 25);
+		btnGirarIzquierda.setBounds(84, 80, 100, 25);
 		btnGirarIzquierda.setText("Girar Izquierda");
 		
 		Button btnGirarDerecha = new Button(composite_1, SWT.NONE);
@@ -188,7 +196,7 @@ public class Principal {
 				
 			}
 		});
-		btnGirarDerecha.setBounds(205, 43, 100, 25);
+		btnGirarDerecha.setBounds(209, 80, 100, 25);
 		btnGirarDerecha.setText("Girar Derecha");
 		
 		Button btnBack = new Button(composite_1, SWT.NONE);
@@ -198,7 +206,7 @@ public class Principal {
 				accionesTexto.append(Comandos.ATRAS + "\n");
 			}
 		});
-		btnBack.setBounds(24, 89, 90, 25);
+		btnBack.setBounds(36, 132, 90, 25);
 		btnBack.setText("Back");
 		
 		Button btnHome = new Button(composite_1, SWT.NONE);
@@ -213,7 +221,7 @@ public class Principal {
 			public void widgetSelected(SelectionEvent e) {
 			}
 		});
-		btnHome.setBounds(138, 89, 90, 25);
+		btnHome.setBounds(156, 132, 90, 25);
 		btnHome.setText("Home");
 		
 		Button btnRecentApps = new Button(composite_1, SWT.NONE);
@@ -223,7 +231,7 @@ public class Principal {
 				accionesTexto.append(Comandos.APPS_RECIENTES + "\n");
 			}
 		});
-		btnRecentApps.setBounds(251, 89, 90, 25);
+		btnRecentApps.setBounds(273, 132, 90, 25);
 		btnRecentApps.setText("Recent Apps");
 		
 		TabItem tbtmClick = new TabItem(tabFolder, SWT.NONE);
@@ -234,7 +242,7 @@ public class Principal {
 		
 		Group grpPosicion = new Group(composite, SWT.NONE);
 		grpPosicion.setText("Posicion");
-		grpPosicion.setBounds(10, 10, 363, 65);
+		grpPosicion.setBounds(10, 10, 382, 65);
 		
 		Label lblX = new Label(grpPosicion, SWT.NONE);
 		lblX.setFont(SWTResourceManager.getFont("Lucida Fax", 14, SWT.NORMAL));
@@ -259,16 +267,33 @@ public class Principal {
 				accionesTexto.append(Comandos.CLICK + " "+ textX.getText() + " " + textY.getText() + "\n");
 			}
 		});
-		btnAgregar.setBounds(278, 28, 75, 25);
+		btnAgregar.setBounds(297, 29, 75, 25);
 		btnAgregar.setText("Agregar");
 		
 		Group grpComponente = new Group(composite, SWT.NONE);
 		grpComponente.setText("Componente");
-		grpComponente.setBounds(10, 80, 363, 65);
+		grpComponente.setBounds(10, 80, 382, 125);
 		
 		Button btnAgregarComponente = new Button(grpComponente, SWT.NONE);
+		btnAgregarComponente.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				accionesTexto.append(Comandos.CLICK_COMPONENT + " "+ textClickComponente.getText()+"<Parent:"+ textPadreClick.getText()+">"+"\n");
+			}
+		});
 		btnAgregarComponente.setText("Agregar");
-		btnAgregarComponente.setBounds(278, 30, 75, 25);
+		btnAgregarComponente.setBounds(297, 80, 75, 25);
+		
+		textClickComponente = new Text(grpComponente, SWT.BORDER);
+		textClickComponente.setEditable(false);
+		textClickComponente.setBounds(23, 82, 268, 21);
+		
+		textPadreClick = new Text(grpComponente, SWT.BORDER);
+		textPadreClick.setBounds(126, 40, 165, 21);
+		
+		Label lblClasePadre = new Label(grpComponente, SWT.NONE);
+		lblClasePadre.setBounds(23, 43, 82, 15);
+		lblClasePadre.setText("Clase Padre:");
 		
 		TabItem tbtmTexto = new TabItem(tabFolder, SWT.NONE);
 		tbtmTexto.setText("Texto");
@@ -277,21 +302,36 @@ public class Principal {
 		tbtmTexto.setControl(composite_2);
 		
 		Label lblIngresarTexto = new Label(composite_2, SWT.NONE);
-		lblIngresarTexto.setBounds(23, 28, 83, 15);
+		lblIngresarTexto.setBounds(22, 39, 83, 15);
 		lblIngresarTexto.setText("Ingresar Texto:");
 		
 		text1 = new Text(composite_2, SWT.BORDER);
-		text1.setBounds(112, 22, 220, 21);
+		text1.setBounds(111, 36, 220, 21);
 		
 		Button btnCrearAccion = new Button(composite_2, SWT.NONE);
 		btnCrearAccion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				accionesTexto.append(Comandos.INGRESAR_TEXTO + " "+ text1.getText() + "\n");
+				accionesTexto.append(Comandos.INGRESAR_TEXTO + " ["+textTextoComponente.getText()+"<Parent:"+ textPadreClick.getText()+">]["+ text1.getText() +"]\n");
 			}
 		});
-		btnCrearAccion.setBounds(115, 63, 75, 25);
+		btnCrearAccion.setBounds(256, 172, 75, 25);
 		btnCrearAccion.setText("Crear Accion");
+		
+		Label lblComponente = new Label(composite_2, SWT.NONE);
+		lblComponente.setBounds(22, 128, 83, 15);
+		lblComponente.setText("Componente");
+		
+		textTextoComponente = new Text(composite_2, SWT.BORDER);
+		textTextoComponente.setEditable(false);
+		textTextoComponente.setBounds(111, 125, 221, 21);
+		
+		Label lblClasePadre_1 = new Label(composite_2, SWT.NONE);
+		lblClasePadre_1.setBounds(22, 85, 83, 15);
+		lblClasePadre_1.setText("Clase Padre:");
+		
+		textPadreTexto = new Text(composite_2, SWT.BORDER);
+		textPadreTexto.setBounds(111, 82, 220, 21);
 		
 		TabItem tabAssert = new TabItem(tabFolder, SWT.NONE);
 		tabAssert.setText("Assert");
@@ -309,7 +349,7 @@ public class Principal {
 		
 		Group grpPropiedades = new Group(shlUitestandroid, SWT.NONE);
 		grpPropiedades.setText("Propiedades");
-		grpPropiedades.setBounds(715, 10, 203, 189);
+		grpPropiedades.setBounds(663, 10, 203, 189);
 		
 		Composite tableContainer = new Composite(grpPropiedades, SWT.NONE);
 		tableContainer.setBounds(0, 22, 203, 167);
@@ -399,7 +439,7 @@ public class Principal {
 				}
 			}
 		});
-		btnCompilar.setBounds(314, 229, 75, 25);
+		btnCompilar.setBounds(314, 350, 75, 25);
 		btnCompilar.setText("Compilar");
 		
 		Button btnGuardar = new Button(shlUitestandroid, SWT.NONE);
@@ -422,14 +462,14 @@ public class Principal {
 			@Override
 			public void mouseUp(MouseEvent e) {
 				creador = new CreadorWindows(pathSDK, workspace, "TestUi", api, "Tig");
-				System.out.println(creador.getPathWorkspace());
+				System.out.println( creador.getPathWorkspace() );
 				
-				creador.ejecutar(Creador.CREAR_BUILD);
-				creador.ejecutar(Creador.CREAR_ANT);
-				creador.ejecutar(Creador.CREAR_PUSH_RUN);
+				creador.ejecutar( Creador.CREAR_BUILD );
+				creador.ejecutar( Creador.CREAR_ANT );
+				creador.ejecutar( Creador.CREAR_PUSH_RUN );
 			}
 		});
-		btnEjecutar.setBounds(314, 360, 75, 25);
+		btnEjecutar.setBounds(314, 406, 75, 25);
 		btnEjecutar.setText("Ejecutar");
 		
 		Button btnGuardarAcciones = new Button(shlUitestandroid, SWT.NONE);
@@ -506,7 +546,7 @@ public class Principal {
 		
 		canvas = new Canvas(shlUitestandroid, SWT.NONE);
 		canvas.setBackground(SWTResourceManager.getColor(SWT.COLOR_INFO_BACKGROUND));
-		canvas.setBounds(10, 10, 379, 206);
+		canvas.setBounds(10, 10, 379, 238);
 		canvas.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseUp(MouseEvent e) {
@@ -663,10 +703,22 @@ public class Principal {
         canvas.redraw();
     }
 	
+    
     public void loadAttributeTable() {
         // udpate the lower right corner table to show the attributes of the node
         tableViewer.setInput(
-                Model.getModel().getSelectedNode().getAttributesArray());
+                Model.getModel().getSelectedNode().getAttributesArray() );
+        
+        StringBuilder sb = new StringBuilder();
+        for( Object o : Model.getModel().getSelectedNode().getAttributesArray() ){
+        	AttributePair ap = (AttributePair) o ;
+        	
+        	if( ap.key.equals( TEXTO ) || ap.key.equals( DESCRIPCION) || ap.key.equals( CLASS )){
+        		sb.append("<"+ap.key+":"+ap.value+">");
+        	}
+        }
+        textClickComponente.setText( sb.toString() );
+        textTextoComponente.setText( sb.toString() );
     }
     
     private int getInverseScaledSize(int size) {

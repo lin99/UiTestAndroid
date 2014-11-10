@@ -22,7 +22,6 @@ public class CreadorWindows extends Creador{
 	static String pathWorkspace;
 	
  	
-
 	public CreadorWindows(String pathAndroid, String pathProyecto, String nombreClase, String nombrePaquete, String numeroAPI, String nombreProyecto){
 		this.pathAndroid = pathAndroid;
 		this.pathProyecto = pathProyecto;
