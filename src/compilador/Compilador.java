@@ -9,15 +9,13 @@ import java.util.regex.Pattern;
 
 
 public class Compilador {
-	
-	//CreadorCarpetasWindows creadorCarpetas;
+
 	
 	
 	//Cambiar path del archivo de escritura
 	public void crearTest( String nameFile, String workspace ) throws Exception{
 		
-		//creadorCarpetas = new CreadorCarpetasWindows(workspace+"\\Tig\\src\\");
-		//creadorCarpetas.crearCarpetas();
+	
 		
 		String path = (workspace+"\\Tig\\src\\");
 		BufferedReader br = new BufferedReader( new FileReader( nameFile ) );
@@ -47,8 +45,8 @@ public class Compilador {
 		sb.append("		e.printStackTrace();\n");
 		sb.append(" }");
 		sb.append("}\n");
+	
 		
-		//
 		sb.append("\n\n");
 		
 		//Agregando Metodo testDemo()
@@ -132,17 +130,7 @@ public class Compilador {
 	}
 
 	
-//	 UiCollection objeto = new UiCollection(new UiSelector()
-//	   .className("android.widget.LinearLayout"));
-//	 String s = "TEXTO!!!!";
-//	 
-//	 UiObject campo = objeto.getChildByText(new UiSelector()
-//	   .className("android.widget.EditText"), "Escribe un mensaje");
-//	 
-//
-//	System.out.println("AQUI ->" + campo.setText(s));
-//	System.out.println(" ->" + campo.getText()); 
-//	 assertEquals(campo.getText(), s);
+
 	
 	/**
 	 * Realiza el split de los componentes con <, >
@@ -196,7 +184,7 @@ public class Compilador {
 	}
 
 	private String ingresarTexto(StringBuilder res, String arg) {
-		//StringBuilder input = new StringBuilder( arg );
+		
 		
 		StringTokenizer st2, st = new StringTokenizer(  arg, "[\\[][\\]]");
 		String texto, atrib;
@@ -226,25 +214,14 @@ public class Compilador {
 		
 		if( !text.trim().equals("") || !content.trim().equals("") ){
 			
-			
-//			 UiCollection objeto = new UiCollection(new UiSelector()
-//			   .className("android.widget.LinearLayout"));
-//			 String s = "TEXTO!!!!";
-//			 
-//			 UiObject campo = objeto.getChildByText(new UiSelector()
-//			   .className("android.widget.EditText"), "Escribe un mensaje");
-//			 
-		//
-//			System.out.println("AQUI ->" + campo.setText(s));
-			
+						
 			System.out.println("CLASE:"+clase);
 			if(clase.trim().equals("android.widget.EditText")){
 				sb.append("	objeto = new UiCollection(new UiSelector().className(\""+ padre +"\"));\n");
 				sb.append("	campo = objeto.getChildByText(new UiSelector().className(\""+clase+"\"), \""+ text+"\");\n");
 				sb.append(" campo.setText(\""+texto+"\");");
 			}
-//			
-//			sb.append("campo.click();");
+
 		}
 		
 		

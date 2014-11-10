@@ -171,7 +171,7 @@ public class Inicial {
 					}
 					
 					
-					//workspace = textPathProyecto.getText();
+		
 					
 					creador = new CreadorWindows(textPathAndroid.getText(), workspace, 
 							"TestUi", textNumeroAPI.getText(),
@@ -186,9 +186,6 @@ public class Inicial {
 					principal.setPath( pathSDK );
 					principal.setWorkspace( workspace );
 
-					//creador.ejecutar(CreadorWindows.CREAR_BUILD);
-					//creador.ejecutar(CreadorWindows.CREAR_ANT);
-					//creador.ejecutar(CreadorWindows.CREAR_PUSH_RUN);
 					if( creado )
 						shell.close();
 					principal.setApi(api);
@@ -201,7 +198,7 @@ public class Inicial {
 					
 					if(!v1){
 						mensajes.append(Mensajes.MJS_ERROR_SDK + "\n");
-						//mensajeError.open( Mensajes.MJS_ERROR_SDK );
+						
 					}if(!v2){
 						mensajes.append(Mensajes.MJS_DIRECTORIO + "\n");
 					}if(!v5){

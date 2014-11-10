@@ -47,8 +47,6 @@ public class CreadorWindows extends Creador{
 		String instruccion = "\""+pathAndroid+"\"" + TOOL + " " + CREATE + " "+nombreProyecto+ " " + T + " "+numeroAPI+ 
 							" "+ P + " " + "\""+pathWorkspace+nombreProyecto+"\"";
 
-//		String instruccion = pathAndroid + TOOL + " " + CREATE + " "+nombreProyecto+ " " + T + " "+numeroAPI+ 
-//							" "+ P + " " + pathWorkspace +nombreProyecto;
 
 		System.out.println(instruccion);
 		
@@ -74,8 +72,7 @@ public class CreadorWindows extends Creador{
 		crearArchivo(CREAR_ANT, sb);
 	}
 	
-	//adb push D:\Lin\AndroidWorkspace\MyAppsTest\bin\MyAppsTest.jar /data/local/tmp/
-	//adb shell uiautomator runtest MyAppsTest.jar -c paquete.LaunchSettings
+	
 	@Override
 	public void batPushRun() {
 		String instruccion = ADB +" " + PUSH +" "+ pathWorkspace+nombreProyecto +"\\"+ BIN + nombreProyecto+ JAR 

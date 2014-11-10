@@ -332,18 +332,6 @@ public class Principal {
 		
 		textPadreTexto = new Text(composite_2, SWT.BORDER);
 		textPadreTexto.setBounds(111, 82, 220, 21);
-		
-		TabItem tabAssert = new TabItem(tabFolder, SWT.NONE);
-		tabAssert.setText("Assert");
-		
-		Composite composite_3 = new Composite(tabFolder, SWT.NONE);
-		tabAssert.setControl(composite_3);
-		
-		TabItem tabEspera = new TabItem(tabFolder, SWT.NONE);
-		tabEspera.setText("Tiempo de Espera");
-		
-		Composite composite_4 = new Composite(tabFolder, SWT.NONE);
-		tabEspera.setControl(composite_4);
 		scrolledComposite.setContent(tabFolder);
 		scrolledComposite.setMinSize(tabFolder.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		
@@ -402,12 +390,6 @@ public class Principal {
 		
 		Menu menu = new Menu(shlUitestandroid, SWT.BAR);
 		shlUitestandroid.setMenuBar(menu);
-		
-		MenuItem mntmArchivo = new MenuItem(menu, SWT.NONE);
-		mntmArchivo.setText("Archivo");
-		
-		MenuItem mntmEdicion = new MenuItem(menu, SWT.NONE);
-		mntmEdicion.setText("Edicion");
 		
 		MenuItem mntmSeparador = new MenuItem(menu, SWT.SEPARATOR);
 		mntmSeparador.setText("Separador");
@@ -471,46 +453,6 @@ public class Principal {
 		});
 		btnEjecutar.setBounds(314, 406, 75, 25);
 		btnEjecutar.setText("Ejecutar");
-		
-		Button btnGuardarAcciones = new Button(shlUitestandroid, SWT.NONE);
-		btnGuardarAcciones.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseUp(MouseEvent e) {
-				JFileChooser fc = new JFileChooser();
-				JFrame aux = new JFrame();
-				fc.setDialogTitle("Guardar Acciones");
-				
-				int returnVal = fc.showSaveDialog( aux );
-				if( returnVal == JFileChooser.APPROVE_OPTION ){
-					System.out.println("SELECTED FILE:"+( fc.getSelectedFile().getAbsolutePath()+"\\" ));
-				}
-				aux.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				aux.dispose();
-				aux = null;
-			}
-		});
-		btnGuardarAcciones.setBounds(10, 473, 114, 25);
-		btnGuardarAcciones.setText("Guardar Acciones");
-		
-		Button btnCargarAcciones = new Button(shlUitestandroid, SWT.NONE);
-		btnCargarAcciones.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseUp(MouseEvent e) {
-				JFileChooser fc = new JFileChooser();
-				JFrame aux = new JFrame();
-				fc.setDialogTitle("Cargar Acciones");
-				
-				int returnVal = fc.showOpenDialog( aux );
-				if( returnVal == JFileChooser.APPROVE_OPTION ){
-					System.out.println("SELECTED FILE:"+( fc.getSelectedFile().getAbsolutePath()+"\\" ));
-				}
-				aux.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				aux.dispose();
-				aux = null;
-			}
-		});
-		btnCargarAcciones.setBounds(153, 473, 98, 25);
-		btnCargarAcciones.setText("Cargar Acciones");
 		
 		Group grpComponentes = new Group(shlUitestandroid, SWT.NONE);
 		grpComponentes.setText("Componentes");
